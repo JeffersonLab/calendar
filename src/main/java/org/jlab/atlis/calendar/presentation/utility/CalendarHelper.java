@@ -278,48 +278,25 @@ public class CalendarHelper {
 
     public String getAbsoluteHostURL(HttpServletRequest request) {
 
-        String scheme = "https";
-        //String scheme = request.getScheme();
+        /**
+         * Generally relative URLS should be used to avoid trying to figure out links,
+         * however in some cases you just need an absolute URL.
+         *
+         * Use cases include:
+         * - generate PDF from HTML.  Relative link inside PDF are useless
+         * - generate Email from HTML.  Relative links inside Emails are useless
+         * - generate logbook entry. Ditto.
+         * - generate redirect to remote login server providing return URL.
+         *
+         * Note: there is no Servlet API to query for "what is my secure port".   In production, it should be 443.
+         * Often differs in development.
+         * In web.xml you can mark a path as confidential, forcing redirect to secure port, but that doesn't help
+         * inside Servlet code.  App server knows secure port.  Won't tell you.  The easiest way is to set an env.
+         * Turns out you often need to consider your proxy server as well in the use cases above.  Even if app
+         * server DID tell you your app server secure port, it might not match outward facing proxy server.
+         * */
 
-        String host = System.getenv("javaProxyHost");
-
-        if (host == null || host.isEmpty()) {
-            host = request.getServerName();
-        }
-
-        String portWithColon = null;
-
-        if (scheme.equals("http")) {
-            String port = System.getenv("javaProxyPort");
-
-            if (port == null || port.isEmpty()) {
-                port = String.valueOf(request.getServerPort());
-            }
-            
-            port = "80";
-            
-            if (port.equals("80")) {
-                portWithColon = "";
-            } else {
-                portWithColon = ":" + port;
-            }
-        } else { // https
-            String port = System.getenv("javaProxySecurePort");
-            
-            if (port == null || port.isEmpty()) {
-                port = String.valueOf(request.getServerPort());
-            }
-
-            port = "443";
-            
-            if (port.equals("443")) {
-                portWithColon = "";
-            } else {
-                portWithColon = ":" + port;
-            }            
-        }
-
-        return scheme + "://" + host + portWithColon;
+        return System.getenv("PROXY_SERVER");
     }
     
     public String getAbsoluteBaseURL(HttpServletRequest request) {
