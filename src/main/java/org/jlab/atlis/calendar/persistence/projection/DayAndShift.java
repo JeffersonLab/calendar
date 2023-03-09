@@ -1,6 +1,8 @@
 package org.jlab.atlis.calendar.persistence.projection;
 
 import java.util.Date;
+import java.util.Objects;
+
 import org.jlab.atlis.calendar.persistence.enumeration.Shift;
 
 /**
@@ -36,13 +38,10 @@ public class DayAndShift {
             return false;
         }
         final DayAndShift other = (DayAndShift) obj;
-        if (this.day != other.day && (this.day == null || !this.day.equals(other.day))) {
+        if (!Objects.equals(this.day, other.day)) {
             return false;
         }
-        if (this.shift != other.shift) {
-            return false;
-        }
-        return true;
+        return this.shift == other.shift;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class AuditContext {
     protected void setUsername(String username) {
         this.username = username;
     }
-    private static ThreadLocal<AuditContext> instance = new ThreadLocal<AuditContext>() {
+    private static final ThreadLocal<AuditContext> instance = new ThreadLocal<AuditContext>() {
 
         @Override
         protected AuditContext initialValue() {

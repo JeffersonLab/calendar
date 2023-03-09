@@ -45,7 +45,7 @@ public class ExcelExporterTest {
     }
 
     @Test
-    public void testExport() throws FileNotFoundException, IOException {
+    public void testExport() throws IOException {
         System.out.println("testExport");
         ExcelExporter exporter = new ExcelExporter();
         

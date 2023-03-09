@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
  */
 public class DateIterator implements Iterator<Date>, Iterable<Date> {
 
-    private Calendar end = Calendar.getInstance();
-    private Calendar current = Calendar.getInstance();
-    private int field;
+    private final Calendar end = Calendar.getInstance();
+    private final Calendar current = Calendar.getInstance();
+    private final int field;
 
     /**
      * Constructs a new DateIterator with the specified start and end date and

@@ -2,6 +2,7 @@ package org.jlab.atlis.calendar.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -71,10 +72,7 @@ public class OccurrenceStyle implements Serializable, Comparable<OccurrenceStyle
             return false;
         }
         final OccurrenceStyle other = (OccurrenceStyle) obj;
-        if (this.occurrenceStyleId != other.occurrenceStyleId && (this.occurrenceStyleId == null || !this.occurrenceStyleId.equals(other.occurrenceStyleId))) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.occurrenceStyleId, other.occurrenceStyleId);
     }
 
     @Override

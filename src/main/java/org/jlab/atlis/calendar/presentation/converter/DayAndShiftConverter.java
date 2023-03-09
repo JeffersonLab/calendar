@@ -10,8 +10,8 @@ import org.jlab.atlis.calendar.presentation.exception.ConverterException;
  * @author ryans
  */
 public class DayAndShiftConverter {
-    private YearMonthDayConverter ymdConverter = new YearMonthDayConverter();
-    private ShiftConverter shiftConverter = new ShiftConverter();
+    private final YearMonthDayConverter ymdConverter = new YearMonthDayConverter();
+    private final ShiftConverter shiftConverter = new ShiftConverter();
     
     public DayAndShift getObject(String dasStr) throws ConverterException {        
         DayAndShift dasObj = new DayAndShift();

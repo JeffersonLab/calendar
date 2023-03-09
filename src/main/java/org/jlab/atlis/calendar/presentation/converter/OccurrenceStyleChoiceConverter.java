@@ -15,7 +15,7 @@ import org.jlab.atlis.calendar.presentation.exception.ConverterException;
  * @author ryans
  */
 public class OccurrenceStyleChoiceConverter {
-    private IntegerConverter ic = new IntegerConverter();
+    private final IntegerConverter ic = new IntegerConverter();
     private OccurrenceStyleChoiceFacade oscFacade = null;
     
     public OccurrenceStyleChoiceConverter() {

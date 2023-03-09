@@ -276,10 +276,7 @@ public class Occurrence implements Comparable<Occurrence>, Serializable {
             return false;
         }
         Occurrence other = (Occurrence) object;
-        if ((this.occurrenceId == null && other.occurrenceId != null) || (this.occurrenceId != null && !this.occurrenceId.equals(other.occurrenceId))) {
-            return false;
-        }
-        return true;
+        return (this.occurrenceId != null || other.occurrenceId == null) && (this.occurrenceId == null || this.occurrenceId.equals(other.occurrenceId));
     }
 
     @Override

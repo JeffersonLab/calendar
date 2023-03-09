@@ -115,10 +115,7 @@ public class Task implements Serializable {
             return false;
         }
         Task other = (Task) object;
-        if ((this.taskId == null && other.taskId != null) || (this.taskId != null && !this.taskId.equals(other.taskId))) {
-            return false;
-        }
-        return true;
+        return (this.taskId != null || other.taskId == null) && (this.taskId == null || this.taskId.equals(other.taskId));
     }
 
     @Override

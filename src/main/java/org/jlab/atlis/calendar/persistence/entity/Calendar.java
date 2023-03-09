@@ -100,10 +100,7 @@ public class Calendar implements Serializable {
             return false;
         }
         Calendar other = (Calendar) object;
-        if ((this.calendarId == null && other.calendarId != null) || (this.calendarId != null && !this.calendarId.equals(other.calendarId))) {
-            return false;
-        }
-        return true;
+        return (this.calendarId != null || other.calendarId == null) && (this.calendarId == null || this.calendarId.equals(other.calendarId));
     }
 
     @Override

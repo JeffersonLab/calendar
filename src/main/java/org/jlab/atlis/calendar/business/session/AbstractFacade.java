@@ -79,8 +79,8 @@ public abstract class AbstractFacade<T> {
 
     public static class OrderDirective {
 
-        private String field;
-        private boolean asc;
+        private final String field;
+        private final boolean asc;
 
         public OrderDirective(String field) {
             this(field, true);

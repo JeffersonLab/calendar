@@ -16,16 +16,16 @@ import org.jlab.atlis.calendar.persistence.enumeration.Shift;
  */
 public class EventCalendarDay {
     private Date yearMonthDay;
-    private List<Occurrence> allOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> owlShowOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> owlMoreOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> owlHideOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> dayShowOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> dayMoreOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> dayHideOccurrences = new ArrayList<Occurrence>();    
-    private List<Occurrence> swingShowOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> swingMoreOccurrences = new ArrayList<Occurrence>();
-    private List<Occurrence> swingHideOccurrences = new ArrayList<Occurrence>();    
+    private final List<Occurrence> allOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> owlShowOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> owlMoreOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> owlHideOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> dayShowOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> dayMoreOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> dayHideOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> swingShowOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> swingMoreOccurrences = new ArrayList<Occurrence>();
+    private final List<Occurrence> swingHideOccurrences = new ArrayList<Occurrence>();
     
     public Date getYearMonthDay() {
         return yearMonthDay;
