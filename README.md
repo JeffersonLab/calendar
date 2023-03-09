@@ -13,7 +13,7 @@ A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for visu
 ---
 
 ## Overview
-The accelerator task list calendar provides a visualization of schedules to aid with work coordination of [ATLis](https://tasklists.jlab.org/) tasks.  The calender is most often used during Scheduled Accelerator Down (SAD) periods so is often refereed to as the SAD Calendar.
+The accelerator task list calendar provides a visualization of schedules to aid with work coordination of [ATLis](https://tasklists.jlab.org/) tasks.  The calender is most often used during Scheduled Accelerator Down (SAD) periods so is often referred to as the SAD Calendar.
 
 ## Quick Start with Compose
 1. Grab project
