@@ -33,7 +33,7 @@ test {
     }
 }
 war {
-    archiveFileName='workmap.war'
+    archiveFileName='calendar.war'
     filesMatching('WEB-INF/web.xml') {
         filter {
             String line -> line.replaceAll("@VERSION@", project.version)
