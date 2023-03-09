@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name = "CALENDAR", schema = "ATLIS_OWNER")
+@Table(name = "CALENDAR", schema = "CALENDAR_OWNER")
 @NamedQueries({
     @NamedQuery(name = "Calendar.findAll", query = "SELECT c FROM Calendar c")})
 public class Calendar implements Serializable {

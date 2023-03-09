@@ -20,7 +20,7 @@ import org.hibernate.envers.RelationTargetAuditMode;
 
 @Entity
 @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
-@Table(name = "OCCURRENCE_STYLE", schema = "ATLIS_OWNER", uniqueConstraints = {
+@Table(name = "OCCURRENCE_STYLE", schema = "CALENDAR_OWNER", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"OCCURRENCE_ID", "OCCURRENCE_STYLE_CHOICE_ID"})})
 public class OccurrenceStyle implements Serializable, Comparable<OccurrenceStyle> {
     @Id

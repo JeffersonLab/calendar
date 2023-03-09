@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "OCCURRENCE_STYLE_CHOICE", schema = "ATLIS_OWNER", uniqueConstraints = {
+@Table(name = "OCCURRENCE_STYLE_CHOICE", schema = "CALENDAR_OWNER", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"NAME"}),
     @UniqueConstraint(columnNames = {"CSS_CLASS_NAME"}),
     @UniqueConstraint(columnNames = {"ORDER_ID"})})

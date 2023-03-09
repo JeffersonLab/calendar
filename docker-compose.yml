@@ -1,0 +1,32 @@
+services:
+  oracle:
+    extends:
+      file: deps.yml
+      service: oracle
+
+  keycloak:
+    extends:
+      file: deps.yml
+      service: keycloak
+
+  puppet:
+    extends:
+      file: deps.yml
+      service: puppet
+
+  calendar:
+    hostname: calendar
+    container_name: calendar
+    ports:
+      - "8443:8443"
+      - "8080:8080"
+      - "9990:9990"
+    environment:
+      ORACLE_DATASOURCE: 'calendar'
+      ORACLE_SERVER: 'oracle:1521'
+      ORACLE_USER: 'CALENDAR_OWNER'
+      ORACLE_PASS: 'password'
+      ORACLE_SERVICE: 'xepdb1'
+      PUPPET_SHOW_SERVER_URL: 'http://puppet:3000'
+      INTERNAL_SERVER_URL: 'http://calendar:8080'
+      TZ: 'America/New_York'

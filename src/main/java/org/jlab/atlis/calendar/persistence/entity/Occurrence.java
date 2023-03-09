@@ -40,7 +40,7 @@ import org.jlab.atlis.calendar.persistence.enumeration.Shift;
  */
 @Entity
 @Audited
-@Table(name = "OCCURRENCE", schema = "ATLIS_OWNER", uniqueConstraints = {
+@Table(name = "OCCURRENCE", schema = "CALENDAR_OWNER", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"YEAR_MONTH_DAY", "SHIFT", "ORDER_ID"})})
 @NamedQueries({
     @NamedQuery(name = "Occurrence.findAll", query = "SELECT o FROM Occurrence o"),

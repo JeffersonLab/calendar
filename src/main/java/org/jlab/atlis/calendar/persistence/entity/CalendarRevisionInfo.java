@@ -23,7 +23,7 @@ import org.jlab.atlis.calendar.presentation.utility.CalendarRevisionInfoListener
  */
 @Entity
 @RevisionEntity(CalendarRevisionInfoListener.class)
-@Table(name = "CALENDAR_REVISION_INFO", schema = "ATLIS_OWNER")
+@Table(name = "CALENDAR_REVISION_INFO", schema = "CALENDAR_OWNER")
 @NamedQueries({
     @NamedQuery(name = "CalendarRevisionInfo.findMostRecent", query = "SELECT c FROM CalendarRevisionInfo c WHERE c.id = (select max(d.id) from CalendarRevisionInfo d)")})
 public class CalendarRevisionInfo implements Serializable {
