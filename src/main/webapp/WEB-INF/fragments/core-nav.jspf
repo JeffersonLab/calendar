@@ -95,7 +95,7 @@
             <dt>Release Date</dt>
             <dd>${initParam.releaseDate}</dd>        
             <dt>Content Contact</dt>
-            <dd>Steve Suhring (suhring)</dd>
+            <dd>Shawn Frierson (frierson)</dd>
             <dt>Technical Contact</dt>
             <dd>Ryan Slominski (ryans)</dd>
         </dl>
