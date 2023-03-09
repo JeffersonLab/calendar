@@ -2,19 +2,12 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>SAD Calendar</display-name>
     <context-param>
-        <description>Date of release</description>
-        <param-name>releaseDate</param-name>
-        <param-value>Mar 9 2023</param-value>
-    </context-param>
-    <context-param>
-        <description>User-friendly release versioning number</description>
         <param-name>releaseNumber</param-name>
-        <param-value>3.10.0</param-value>
+        <param-value>@VERSION@</param-value>
     </context-param>
     <context-param>
-        <description>Resource revision number used to bust caches</description>
-        <param-name>resourceVersionNumber</param-name>
-        <param-value>15</param-value>
+        <param-name>releaseDate</param-name>
+        <param-value>@RELEASE_DATE@</param-value>
     </context-param>
     <context-param>
         <description>App short name</description>

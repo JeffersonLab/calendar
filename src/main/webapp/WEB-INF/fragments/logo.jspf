@@ -1,2 +1,2 @@
 <%@ page pageEncoding="UTF-8" %>
-<h1><a href="/calendar/view-outlook"><img alt="SAD Calendar" src="resources/v${initParam.resourceVersionNumber}/img/logo.png" width="430" height="60"/></a></h1>
+<h1><a href="/calendar/view-outlook"><img alt="SAD Calendar" src="resources/v${initParam.releaseNumber}/img/logo.png" width="430" height="60"/></a></h1>

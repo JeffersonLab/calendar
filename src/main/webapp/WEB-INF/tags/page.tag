@@ -16,10 +16,10 @@
             background-image: url("${cdnContextPath}/jquery-ui/1.10.3/theme/atlis/images/ui-icons_ffff00_256x240.png") !important;
         }
     </style>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/v${initParam.resourceVersionNumber}/img/favicon.ico"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/img/favicon.ico"/>
     <link type="text/css" rel="stylesheet" href="${cdnContextPath}/jquery-ui/1.10.3/theme/atlis/jquery-ui.min.css"/>
-    <link type="text/css" rel="stylesheet" href="resources/v${initParam.resourceVersionNumber}/css/site.css"/>
-    <link type="text/css" rel="stylesheet" href="resources/v${initParam.resourceVersionNumber}/css/calendar.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/v${initParam.releaseNumber}/css/site.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/v${initParam.releaseNumber}/css/calendar.css"/>
     <jsp:invoke fragment="stylesheets"/>
 </head>
 <body>
@@ -31,8 +31,8 @@
 <script type="text/javascript" src="${cdnContextPath}/jquery-ui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="resources/js/linkify-2.1.min.js"></script>
 <script type="text/javascript" src="resources/js/linkify-jquery-2.1.min.js"></script>
-<script type="text/javascript" src="resources/v${initParam.resourceVersionNumber}/js/datepicker.js"></script>
-<script type="text/javascript" src="resources/v${initParam.resourceVersionNumber}/js/calendar.js"></script>
+<script type="text/javascript" src="resources/v${initParam.releaseNumber}/js/datepicker.js"></script>
+<script type="text/javascript" src="resources/v${initParam.releaseNumber}/js/calendar.js"></script>
 <script>
     jlab = jlab || {};
     jlab.keycloakHostname = '${env["KEYCLOAK_HOSTNAME"]}';

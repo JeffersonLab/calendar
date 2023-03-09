@@ -9,7 +9,7 @@
 <t:page title="${title}">
     <jsp:attribute name="stylesheets">
                 <link type="text/css" rel="stylesheet"
-                      href="resources/v${initParam.resourceVersionNumber}/css/form.css"/>
+                      href="resources/v${initParam.releaseNumber}/css/form.css"/>
     </jsp:attribute>
     <jsp:body>
         <div class="header">

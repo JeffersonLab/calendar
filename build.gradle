@@ -1,6 +1,13 @@
 plugins {
     id 'war'  
 }
+description = "Accelerator task calendar"
+group 'org.jlab'
+version = '3.10.0'
+
+ext {
+    releaseDate = 'Mar 9 2023'
+}
 tasks.withType(JavaCompile) {
     options.release = 11
     options.encoding = 'UTF-8'
@@ -23,5 +30,16 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
         exceptionFormat "full"
+    }
+}
+war {
+    archiveFileName='workmap.war'
+    filesMatching('WEB-INF/web.xml') {
+        filter {
+            String line -> line.replaceAll("@VERSION@", project.version)
+        }
+        filter {
+            String line -> line.replaceAll("@RELEASE_DATE@", releaseDate)
+        }
     }
 }

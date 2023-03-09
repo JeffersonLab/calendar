@@ -12,7 +12,7 @@
         <jsp:attribute name="stylesheets">
         </jsp:attribute>
         <jsp:attribute name="scripts">
-                <script type="text/javascript" src="resources/v${initParam.resourceVersionNumber}/js/order.js"></script>
+                <script type="text/javascript" src="resources/v${initParam.releaseNumber}/js/order.js"></script>
         </jsp:attribute>
         <jsp:body>
         <div class="header">

@@ -4,13 +4,13 @@
     PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
     "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
 
-<urlrewrite>   
+<urlrewrite>
 
     <!-- Resource Versioning -->
-    
+
     <!-- Rewrite resource link to strip off directory version -->
     <rule>
-        <from>^/resources/v([0-9]+)/(.*)$</from>
+        <from>^/resources/v([^/]*)/(.*)$</from>
         <to>/resources/$2</to>
     </rule>
 

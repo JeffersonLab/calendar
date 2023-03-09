@@ -8,12 +8,12 @@
 <c:set var="title" value="Copy Occurrence"/>
 <t:page title="${title}">
         <jsp:attribute name="stylesheets">
-        <link type="text/css" rel="stylesheet" href="resources/v${initParam.resourceVersionNumber}/css/form.css"/>
+        <link type="text/css" rel="stylesheet" href="resources/v${initParam.releaseNumber}/css/form.css"/>
         </jsp:attribute>
     <jsp:attribute name="scripts">
-        <script type="text/javascript" src="resources/v${initParam.resourceVersionNumber}/js/edit-event.js"></script>
+        <script type="text/javascript" src="resources/v${initParam.releaseNumber}/js/edit-event.js"></script>
                 <script type="text/javascript"
-                        src="resources/v${initParam.resourceVersionNumber}/js/charCount.js"></script>
+                        src="resources/v${initParam.releaseNumber}/js/charCount.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#description").charCount({
