@@ -1,0 +1,75 @@
+dl.horizontal-fields {
+    overflow: hidden;
+    padding: 1em;
+    min-width: 800px;
+}
+dl.horizontal-fields > dt {
+    clear: both;
+    width: 25%;
+    float: left;
+    text-align: right;
+    font-weight: bold;
+    margin: 0 0 0.5em 0;
+}
+dl.horizontal-fields > dd {
+    float: left;
+    width: 70%;
+    margin: 0 0 0.5em 0.5em;
+}
+.format,
+.counter {
+    display: block;
+    white-space: nowrap;
+    font-size: 0.75em;
+    font-style: italic;
+}
+.error,
+.exceeded {
+    color: red;
+    font-weight: bold;
+}
+.warning {
+    color: orange;
+    font-weight: bold;
+}
+.required:after {
+    content: "*";
+    color: red;
+}
+.checkable {
+    display: inline-block;
+    margin-right: 0.5em;    
+    min-width: 135px;
+}
+dl.horizontal-fields textarea {
+    width: 20em;
+    height: 6em;
+}
+dl.horizontal-fields select {
+    width: 100px;
+}
+dl.horizontal-fields input[type=text],
+dl.horizontal-fields input[type=password] {
+    width: 12em;
+}
+#occurrence-fields .select-for-update {
+    float: left;
+    margin-left: 2em;
+    margin-right: 0.5em;
+}
+.select-for-update-label {
+    font-weight: bold;
+}
+.action-button-panel input[type="submit"] {
+    min-width: 5em;
+}
+.checkbox-helper {
+    text-decoration: underline;
+    color: blue;
+}
+.checkbox-helper:hover {
+    cursor: pointer;
+}
+fieldset {
+    margin-bottom: 0.5em;
+}

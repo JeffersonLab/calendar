@@ -1,0 +1,147 @@
+h2 {
+    margin-bottom: 0.5em;
+}
+.day-header {
+    background-color: #A4DDEB;
+}
+.add-event {
+    float: right;
+}
+.owl-shift {
+    background-color: #E0E0E0;
+}
+.swing-shift {
+    background-color: #E0E0E0;
+}
+ul.sortable,
+ul.drag-container {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-height: 1.25em;
+}
+ul.sortable li,
+ul.drag-container li {
+    min-width: 7em;
+    height: 1.25em;
+    font-size: 1em;
+    overflow: hidden;
+}
+ul.drag-container li:before {
+    content: "Drag For Space";
+    text-align: center;
+    color: blue;
+}
+.remove, .remove:visited, .remove:hover, .remove:active {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.viewOccurrenceOpener {
+    cursor: pointer;
+}
+li.spacer {
+    text-align: center;
+}
+ul.drag-container li span.remove {
+    display: none;
+}
+td.ui-state-orderable li,
+td ul.drag-container li {
+    border: 1px dotted black;
+    cursor: move;
+    margin-bottom: 3px;
+    padding: 0 16px 0 0;
+    min-width: 7em;
+    position: relative;
+}
+.ui-state-not-orderable .drag-container {
+    display: none;
+}
+.ui-state-not-orderable .remove {
+    display: none;
+}
+.calendar,
+.calendar td,
+.calendar th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 3px;
+    vertical-align: top;
+}
+.calendar th {
+    text-align: left;
+}
+.swing-shift,
+table.calendar thead,
+table.calendar td.week-column {
+    border-bottom: thick solid #50BCD7;
+}
+.calendar td.shift-events-cell {
+    min-width: 7em;
+}
+table {
+    width: 100%;
+}
+#key {
+    padding: 0.5em;
+    font-size: 0.75em;
+    margin-bottom: 0.5em;
+    margin-right: 0;
+    border: 1px solid black;
+    background-color: white;
+    position: relative;
+}
+#key .legend {
+    font-weight: bold;
+    display: block;
+    top: -12px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    position: absolute;
+    text-align: center;
+    width: 4em;
+    padding: 0.25em;
+}
+#key ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#key li {
+    float: left;
+    margin-top: 0.8em;
+    margin-left: 0.4em;
+    min-width: 23%;
+}
+.today {
+    border: 3px solid red;
+    padding: 8px;
+    border-radius: 24px;
+    -moz-border-radius: 24px;
+    -webkit-border-radius: 24px;
+}
+.more-events {
+    margin-left: 0.5em;
+}
+.drag-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 1px;
+}
+#editable-control-panel-hook {
+    position: relative;
+}
+#editable-control-panel {
+    width: auto;
+    position: absolute;
+    left: 1em;
+    top: 0;
+    background-color: white;
+    box-shadow: 10px 10px 5px #888888;
+    padding: 0.25em;
+    border: 1px solid black;
+}

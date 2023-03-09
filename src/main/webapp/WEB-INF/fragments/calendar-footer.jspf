@@ -1,0 +1,29 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:url value="https://accweb.acc.jlab.org/puppet-show/pdf" var="pdfURL">
+    <c:param name="url" value="${absViewURL}"/>
+    <c:param name="filename" value="calendar.pdf"/>
+    <c:param name="format" value="Letter"/>
+    <c:param name="landscape" value="true"/>
+    <c:param name="printBackground" value="true"/>
+    <c:param name="waitUntil" value="networkidle2"/>
+</c:url>
+<div class="footer">
+    <f:formatDate value="${lastRevision.revisionDate}" pattern="yyyy-MM-dd HH:mm" var="revisionDate"/>
+    <span class="last-revision">Last Modified: 
+        <c:choose>
+            <c:when test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                <a class="alwaysblue" href="view-audit"><c:out value="${revisionDate}"/></a>
+            </c:when>
+            <c:otherwise>
+                <c:out value="${revisionDate}"/>
+            </c:otherwise>
+        </c:choose>
+    </span>
+    <a class="styled-button excel-button" href="calendar.xlsx?start=${exportStart}&amp;end=${exportEnd}">Excel</a>
+    <c:if test="${!publicProxy}">
+        <a id="pdf-button" class="styled-button" href="${fn:escapeXml(pdfURL)}">PDF</a>
+    </c:if>
+</div>
+<%@include file="view-occurrence-dialog.jspf"%>

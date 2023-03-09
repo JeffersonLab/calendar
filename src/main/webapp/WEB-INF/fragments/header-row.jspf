@@ -1,0 +1,12 @@
+<%@ page pageEncoding="UTF-8" %>
+<tr>
+    <th class="week-column"></th>
+    <th class="shift-label-column"></th>
+    <th>Sun</th>
+    <th>M</th>
+    <th>T</th>
+    <th>W</th>
+    <th>T</th>
+    <th>F</th>
+    <th>Sat</th>
+</tr>

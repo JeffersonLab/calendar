@@ -1,0 +1,156 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<ul>                      
+    <li><a id="viewOpener" href="#">View</a></li>
+    <c:if test="${!publicProxy}">
+        <li><a href="${fn:escapeXml(helper.atlisURL)}">ATLis</a></li>
+    </c:if>
+    <li><a href="/workmap">Work Map</a></li>
+    <li><a id="helpOpener" href="#">Help</a></li>
+</ul>
+    <div id="calendar-name-banner" data-calendar-id="${calendarId}"><c:out value="${selectedCalendar.name}"/></div>
+<div id="core-dialogs">
+    <div id="viewDialog" class="dialog" title="Select View">
+        <form id="viewform" action="view-${view}" method="get">
+            <dl>
+                <dt>
+                <label>Calendar</label>
+                </dt>
+                <dd>
+                    <select name="calendar" id="calendarselect">
+                        <c:forEach items="${calendarList}" var="calendar">
+                            <option value="${calendar.calendarId}"${calendarId eq calendar.calendarId ? ' selected="selected"' : ''}><c:out value="${calendar.name}"/></option>
+                        </c:forEach>
+                    </select>          
+                </dd>                
+                <dt>
+                <label>View</label>
+                </dt>
+                <dd>
+                    <select id="viewselect">
+                        <option value="view-outlook"${'outlook' eq view ? ' selected="selected"' : ''}>Outlook</option>
+                        <option value="view-month"${'month' eq view ? ' selected="selected"' : ''}>Month</option>
+                        <option value="view-week"${'week' eq view ? ' selected="selected"' : ''}>Week</option>
+                        <option value="view-day"${'day' eq view ? ' selected="selected"' : ''}>Day</option>
+                    </select>          
+                </dd>
+                <dt class="day-line ui-helper-hidden">
+                <label>Day</label>
+                </dt>
+                <dd class="day-line ui-helper-hidden">
+                    <c:set var="selectedDay" value="${param.yearMonthDay}"/>
+                    <c:if test="${empty selectedDay}">
+                        <c:set var="selectedDay" value="${helper.todayString}"/>
+                    </c:if>                    
+                    <input id="yearMonthDay" class="datepicker" name="yearMonthDay" type="text" maxlength="10" value="${selectedDay}"/>
+                </dd>             
+                <dt class="week-line">
+                <label>Week</label>
+                </dt>
+                <dd class="week-line">
+                    <c:set var="selectedWeek" value="${param.week}"/>
+                    <c:if test="${empty selectedWeek}">
+                        <c:set var="selectedWeek" value="${helper.currentWeek}"/>
+                    </c:if>
+                    <input id="week" name="week" type="text" maxlength="2" value="${selectedWeek}"/>
+                </dd>
+                <dt class="month-line ui-helper-hidden">
+                <label>Month</label>
+                </dt>
+                <dd class="month-line ui-helper-hidden">
+                    <c:set var="selectedMonth" value="${param.month}"/>
+                    <c:if test="${empty selectedMonth}">
+                        <c:set var="selectedMonth" value="${helper.currentMonth}"/>
+                    </c:if>
+                    <select id="month" name="month">
+                        <c:forEach items="${selectHelper.months}" var="month" varStatus="status">
+                            <option value="${status.index + 1}"${selectedMonth eq status.index + 1 ? ' selected="selected"' : ''}>${month}</option>
+                        </c:forEach>
+                    </select>
+                </dd>             
+                <dt class="year-line">
+                <label>Year</label>
+                </dt>
+                <dd class="year-line">
+                    <c:set var="selectedYear" value="${param.year}"/>
+                    <c:if test="${empty selectedYear}">
+                        <c:set var="selectedYear" value="${helper.currentYear}"/>
+                    </c:if>                    
+                    
+                    <input type="text" maxlength="4" id="year" name="year" value="${selectedYear}"/>
+                </dd>            
+            </dl>
+            <div class="dialog-button-panel">
+                <button id="viewclose" class="styled-button">Cancel</button>
+                <input class="styled-button" type="submit" value="Open"/>
+            </div>        
+        </form>        
+    </div>
+    <div id="helpDialog" class="dialog" title="Help">
+        <h3>SAD Calendar</h3>
+        <dl class="min-fields">
+            <dt>Version</dt>
+            <dd>${initParam.releaseNumber}</dd>
+            <dt>Release Date</dt>
+            <dd>${initParam.releaseDate}</dd>        
+            <dt>Content Contact</dt>
+            <dd>Steve Suhring (suhring)</dd>
+            <dt>Technical Contact</dt>
+            <dd>Ryan Slominski (ryans)</dd>
+        </dl>
+        <div class="dialog-button-panel">
+            <button id="helpclose" class="styled-button">Close</button>
+            <a id="userguidelink" class="styled-button" href="https://devweb.acc.jlab.org/twiki/bin/view/SWDocs/ScheduledAcceleratorDownCalendar">User Guide</a>
+        </div>
+    </div>
+    <div id="moveDialog" class="dialog" title="Select Day(s) to Move">
+        <form id="moveform" action="view-${view}" method="get">
+            <dl>
+                <dt>
+                    <label>From Calendar</label>
+                </dt>
+                <dd>
+                    <select name="calendarfrom" id="move-from-calendar-select">
+                        <c:forEach items="${calendarList}" var="calendar">
+                            <option value="${calendar.calendarId}"${calendarId eq calendar.calendarId ? ' selected="selected"' : ''}><c:out value="${calendar.name}"/></option>
+                        </c:forEach>
+                    </select>
+                </dd>
+                <dt>
+                    <label>From Start Day (inclusive)</label>
+                </dt>
+                <dd>
+                    <input id="startDay" class="basicdatepicker" name="startDay" type="text" maxlength="10" value="${selectedDay}"/>
+                </dd>
+                <dt>
+                    <label>Number of Days</label>
+                </dt>
+                <dd>
+                    <input autofocus type="number" max="90" min="1" id="numberOfDays" value="1"/>
+                </dd>
+                <dt>
+                    <label>To Calendar</label>
+                </dt>
+                <dd>
+                    <select name="calendarto" id="move-to-calendar-select">
+                        <c:forEach items="${calendarList}" var="calendar">
+                            <option value="${calendar.calendarId}"${calendarId eq calendar.calendarId ? ' selected="selected"' : ''}><c:out value="${calendar.name}"/></option>
+                        </c:forEach>
+                    </select>
+                </dd>
+                <dt>
+                    <label>To Start Day (inclusive)</label>
+                </dt>
+                <dd>
+                    <input id="moveToDate" class="basicdatepicker" name="moveToDate" type="text" maxlength="10" value="${selectedDay}"/>
+                </dd>
+            </dl>
+            <p><b>Note</b>: If you move items between "Calendars" entire events are moved (Events aren't split) so Occurrences outside of the selected range may be affected.</p>
+            <div class="dialog-button-panel">
+                <button type="button" class="styled-button dialog-close-button">Cancel</button>
+                <input class="styled-button" id="move-button" type="button" value="Move"/>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,349 @@
+body {
+    font-family: arial, sans-serif;
+    margin: 0;
+}
+.content,
+.footer {
+    margin: 0 1em 1em 1em;
+}
+.left-header,
+.center-header,
+.right-header {
+    width: 33.333%;
+    float: left;
+}
+.header {
+    overflow: auto;
+    min-width: 1220px;
+    padding: 1em;
+
+    background-image: linear-gradient(bottom, #FFFFFF 0%, #50BCD7 70%);
+    background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #50BCD7 70%);
+    background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #50BCD7 70%);
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #50BCD7 70%);
+    background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #50BCD7 70%);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#50BCD7', endColorstr='#FFFFFF');/*For IE7-8-9*/
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, #FFFFFF),
+        color-stop(0.7, #50BCD7)
+        ); 
+}
+h1 {
+    font-family: "Gill Sans Ultra Bold","Arial Black",sans-serif;
+    margin: 0;
+    font-size: 3em;
+    line-height: 1em;
+    text-shadow: #6374AB 0.1em 0.1em 0.1em;
+    color: #C90000;
+    white-space: nowrap;    
+}
+#pageLink {
+    color: black;
+    text-decoration: none;
+    pointer-events: none;
+}
+h2 {
+    margin: 0;
+}
+.center-header {
+    text-align: center;
+}
+.admin-panel,
+.do {
+    float: right;
+}
+.page-error {
+    display: block;
+    text-align: center;
+}
+.action-button-panel {
+    text-align: left;
+}
+.action-button-panel input {
+    margin: 0 0.5em;
+}
+div.nav {
+    margin: 0.5em 2em 0;
+}
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;    
+}
+.nav li {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+.nav li a {
+    text-decoration: none;
+    color: #CA0000;
+    font-weight: bold;  
+    margin: 0;
+    padding: 0 0.5em;
+}
+.nav li a:hover {
+    background-color: #330066;
+    color: #FFFF00;
+}
+.alwaysblue, .alwaysblue:visited, .alwaysblue:hover, .alwaysblue:active,
+.detail-link, .detail-link:visited, .detail-link:hover, .detail-link:active {
+    color: blue;
+}
+.top-left-nav a {
+    margin-right: 1em;
+}
+.detail-link {
+    margin-left: 0.25em;
+}
+.detail-link-box {
+    white-space: nowrap;
+}
+#occurrences-section caption {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+#occurrences-section table {
+    border-collapse: collapse;
+}
+#occurrences-section td, 
+#occurrences-section th {
+    border: 1px solid black;
+    padding: 0.5em;
+}
+#occurrences-section th {
+    min-width: 64px;
+}
+#occurrences-section a#create-link {
+    margin-top: 0.75em;
+}
+#add-occurrence-button {
+    width: 5em;
+}
+.undecorated-link {
+    text-decoration: none;
+}
+.undecorated-link, .undecorated-link:visited, .undecorated-link:hover, .undecorated-link:active {
+    color: inherit;
+}
+.lock {
+    color: red;
+}
+.utility {
+    color: fuchsia;
+}
+.radcon {
+    color: #8a06f2;
+}
+.tentative {
+    font-style: italic;
+}
+.changed {
+    background-color: yellow;
+}
+.subset {
+    margin-left: 1.5em;
+}
+.support {
+    color: green;
+}
+.incomplete {
+    text-decoration: line-through;
+}
+.major {
+    font-weight: bold;
+}
+.lerf {
+    color: #280EF3;
+}
+#logout-form input,
+.username-container {
+    float: left;
+    margin-right: 10px;
+}
+.username-container {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.footer,
+.table-wrapper,
+div.action-button-panel {
+    min-width: 1220px;
+}
+.content dl.horizontal-fields,
+#occurrences-section,
+div.fieldset {
+    border: 1px solid black;
+    margin-bottom: 1em;
+    padding: 1em;
+    min-width: 1170px;
+}
+
+div.table-wrapper {
+    float: left;
+    overflow: hidden;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+div.table-wrapper,
+dl.horizontal-fields,
+#occurrences-section,
+div.fieldset,
+#key {
+    -moz-box-shadow: 10px 10px 5px #888;
+    -webkit-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888;    
+}
+
+div.fieldset dl.horizontal-fields {
+    border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;    
+    box-shadow: none;
+    min-width: 1160px;
+}
+
+table.basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+table.basic td, 
+table.basic th {
+    border: 1px solid black;
+    padding: 0.5em;
+}
+.editable,
+.atlis {
+    display: inline-block;
+    position: relative;
+    padding: 0.4em 8px 0.4em 8px;
+}
+.editable .ui-icon,
+.atlis .ui-icon {
+    left: 0;
+    margin: -8px 5px 0 0;
+    position: absolute;
+    top: 50%;
+}
+.paginator {
+    margin-bottom: 0.5em;
+}
+.paginator a {
+    text-decoration: none;
+}
+.timeline-scroller {
+    vertical-align: middle;
+}
+#core-dialogs,
+#viewOccurrenceDialog {
+    display: none;
+}
+.dialog dt {
+    font-weight: bold;
+}
+div.dialog a {
+    color: blue;
+}
+.dialog dd {
+    min-height: 1em;
+    padding: 0.25em;
+}
+.deleteform {
+    display: inline-block;
+}
+.dialog-button-panel {
+    text-align: center;
+}
+.styled-button {
+    font-size: 12px !important;
+}
+table.basic .styled-button,
+#occurrences-section .styled-button,
+table.basic input.styled-button {
+    min-width: 5.5em;
+    margin-top: 0.25em;
+}
+.column-button-group {
+    display: inline-block;
+    width: 100px;
+}
+dl.min-fields-special {
+    border: 1px solid black;
+    padding: 1em;
+}
+#week,
+#year {
+    width: 3em;
+}
+.dialog-button-panel button,
+.dialog-button-panel input,
+.action-button-panel button,
+.action-button-panel input {
+    vertical-align: top;
+    line-height: 1.4em;
+    margin-top: 0;
+}
+.excel-button,
+#pdf-button {
+    float: right;
+    margin-left: 5px;
+}
+
+/*ATLis Style fixes*/
+.ui-button {
+    font-weight: bold !important;
+}
+
+#notification-bar {
+    position: fixed;
+    background-color: orange;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 8px 8px #979797;
+    z-index: 1000;    
+    font-family: "Verdana",sans-serif;
+}
+.special-notification .header {
+    padding-top: 35px;
+}
+
+#calendar-name-banner {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#move-opener-link {
+    margin-top: 20px;
+}
+
+/*Print tweaks*/
+@media print {
+    div.nav,
+    #credentials,
+    .styled-button {
+        display: none !important;
+    }
+    #pageLink {
+        pointer-events: auto !important;
+    }
+    #key li {
+        min-height: 14pt !important;
+    }
+    #key {
+        margin-left: 6pt !important;
+    }
+    .calendar {
+        margin-top: 6pt !important;
+    }
+}

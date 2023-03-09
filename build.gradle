@@ -1,0 +1,27 @@
+plugins {
+    id 'war'  
+}
+tasks.withType(JavaCompile) {
+    options.release = 11
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    providedCompile 'javax:javaee-api:7.0',
+        'javax.servlet:jstl:1.2',
+        'org.tuckey:urlrewritefilter:4.0.4',    
+        'org.apache.poi:poi:3.12',
+        'org.apache.poi:poi-ooxml:3.12',
+        'org.hibernate:hibernate-core:5.4.2.Final',
+        'org.hibernate:hibernate-envers:3.6.10.Final'
+    testImplementation 'junit:junit:4.13.2'
+}
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+}

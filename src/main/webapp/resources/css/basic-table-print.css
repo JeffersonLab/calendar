@@ -1,0 +1,42 @@
+body {
+    font-size: 10pt;
+}
+div.header {
+    padding: 10pt 0 5pt 0;
+    background-image: none;
+    filter: none;
+}
+div.header,
+div.table-wrapper,
+div.action-button-panel,
+#occurrences-section,
+dl.horizontal-fields,
+div.fieldset {
+    min-width: 512pt !important;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;    
+}
+div.nav,
+#credentials,
+.header img,
+button.timeline-scroller {
+    display: none;
+}
+h1 {
+    font-size: 2.75em;
+}
+div.left-header,
+div.right-header {
+    width: 35%;
+}
+div.center-header {
+    width: 30%;
+}
+h1, .subtitle {
+    display: block;
+}
+dl.horizontal-fields,
+#occurrences-section {
+    border: none !important;
+}

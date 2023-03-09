@@ -1,0 +1,49 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<tr class="day-header">
+    <td class="week-column" rowspan="4">
+        <c:url value="${helper.getAbsoluteViewWeekURL(pageContext.request, calendarId, week.year, week.week)}" var="absViewWeekURL"/>
+        <a class="undecorated-link" title="View Week" href="${fn:escapeXml(absViewWeekURL)}">${week.week}</a>    
+    </td>    
+    <td class="shift-label-column"></td>
+    <c:forEach items="${week.days}" var="day" varStatus="status">
+        <td>
+            <div>
+                <c:set value="${fragmentOutlook ne null && status.first ? 'yyyy-MM-dd' : 'dd'}" var="pattern"/>
+                <c:if test="${day.yearMonthDay ne null}">
+                    <c:url value="${helper.getAbsoluteViewDayURL(pageContext.request, calendarId, day.yearMonthDay)}" var="absViewDayURL"/>
+                    <a title="View Day" class="undecorated-link${helper.isToday(day.yearMonthDay) ? ' today' : ''}" href="${fn:escapeXml(absViewDayURL)}"><f:formatDate value="${day.yearMonthDay}" pattern="${pattern}"/></a>
+                    <c:if test="${day.more}">
+                        <span class="more-events">(more...)</span>
+                    </c:if>
+                    <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                        <a class="add-event undecorated-link" title="Add Event" href="${helper.calculateAddEventURL(calendarId, day.yearMonthDay)}">+</a>   
+                    </c:if>
+                </c:if>
+                <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                    <ul class="drag-container">
+                        <li class="draggable spacer"><span class="remove">Remove Space</span><span class="drag-handle ui-icon ui-icon-arrow-4-diag" title="Click and Hold to Drag"></span></li>
+                    </ul>
+                </c:if>
+            </div>
+        </td>
+    </c:forEach>
+</tr>
+<tr class="owl-shift">
+    <td class="shift-label-column">Owl</td>
+    <c:set var="fragmentDays" value="${week.days}" scope="request"/>
+    <c:set var="fragmentShift" value="${'OWL'}" scope="request"/>
+    <%@include file="../fragments/shift-week.jspf"%>
+</tr>
+<tr class="day-shift">
+    <td class="shift-label-column">Day</td>
+    <c:set var="fragmentDays" value="${week.days}" scope="request"/>
+    <c:set var="fragmentShift" value="${'DAY'}" scope="request"/>
+    <%@include file="../fragments/shift-week.jspf"%>
+</tr>
+<tr class="swing-shift">
+    <td class="shift-label-column">Swing</td>
+    <c:set var="fragmentDays" value="${week.days}" scope="request"/>
+    <c:set var="fragmentShift" value="${'SWING'}" scope="request"/>
+    <%@include file="../fragments/shift-week.jspf"%>                       
+</tr>

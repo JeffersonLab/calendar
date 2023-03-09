@@ -1,0 +1,12 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div id="key">
+    <span class="legend">Key</span>
+    <ul>
+        <li><span class="good">Good Plan</span></li>     
+        <c:forEach items="${styleChoices}" var="s">
+            <li><span class="${s.cssClassName}"><c:out value="${s.name}"/></span></li>
+        </c:forEach>
+        <li><span class="atlis"><span class="ui-icon ui-icon-extlink"></span></span><span>ATLis Task</span></li>            
+    </ul>
+</div> 

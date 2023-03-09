@@ -1,0 +1,35 @@
+<%-- This fragment looks for two request scoped attributes: fragmentDays and fragmentShift --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:forEach items="${fragmentDays}" var="day">
+    <f:formatDate value="${day.yearMonthDay}" pattern="yyyy-MM-dd" var="itemDate"/>
+    <f:formatDate value="${day.yearMonthDay}" pattern="yyyy:MM:dd" var="itemDateColon"/>
+    <td class="shift-events-cell${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null ? ' ui-state-orderable' : ' ui-state-not-orderable'}">
+        <ul class="sortable" data-day="${itemDate}" data-shift="${fragmentShift}">
+            <c:forEach items="${day.getOccurrences(fragmentShift, 'SHOW', true, true)}" var="occurrence" varStatus="status">
+                <c:choose>
+                    <c:when test="${occurrence.occurrenceId ne null}">
+                        <li id="order_${occurrence.occurrenceId}"${occurrence.styles ne null ? ' class="'.concat(helper.getCSSClasses(occurrence.styles)).concat('"') : ''}>
+                            <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                                <span class="editable">
+                                    <a class="ui-icon ui-icon-pencil" href="edit-occurrence?occurrenceId=${occurrence.occurrenceId}" title="Edit Occurrence"></a>                                   
+                                </span>
+                                <span class="drag-handle ui-icon ui-icon-arrow-4-diag" title="Click and Hold to Drag"></span>
+                            </c:if>
+                            <c:if test="${not empty occurrence.event.taskId}">
+                                <span class="atlis">
+                                    <a class="ui-icon ui-icon-extlink" href="${helper.calculateAtlisURL(occurrence.event.taskId)}" title="View ATLis Task"></a>
+                                </span>
+                            </c:if>                           
+                            <span class="viewOccurrenceOpener" data-occurrenceId="${occurrence.occurrenceId}" data-eventId="${occurrence.event.eventId}" data-title="${fn:escapeXml(occurrence.title)}" data-liaison="${fn:escapeXml(occurrence.liaison)}" data-remark="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) ? fn:escapeXml(occurrence.remark) : ''}"${occurrence.description ne null ? ' title="'.concat(fn:escapeXml(occurrence.description)).concat('"') : ''}><c:out value="${occurrence.title}"/></span>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li id="order_spacer:${itemDateColon}:${fragmentShift}:${status.count}" class="spacer"><span class="remove">Remove Space</span></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+        </ul>
+    </td>
+</c:forEach>

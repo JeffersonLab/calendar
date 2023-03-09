@@ -1,0 +1,31 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="left-header">
+    <%@include file="logo.jspf"%>
+    <div id="credentials">
+        <c:choose>
+            <c:when test="${publicProxy}">
+
+            </c:when>
+            <c:when test="${pageContext.request.userPrincipal ne null}">
+                <div class="username-container">
+                    <c:out value="${pageContext.request.userPrincipal.name.split(':')[2]}"/>
+                </div>
+                <form id="logout-form" action="logout" method="post">
+                    <input class="styled-button" type="submit" value="Logout"/>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <c:url var="domainRelativeReturnUrl" scope="request" context="/" value="${requestScope['javax.servlet.forward.request_uri']}${requestScope['javax.servlet.forward.query_string'] ne null ? '?'.concat(requestScope['javax.servlet.forward.query_string']) : ''}"/>
+                <c:url value="/sso" var="loginUrl">
+                    <c:param name="returnUrl" value="${helper.getAbsoluteHostURL(pageContext.request).concat(domainRelativeReturnUrl)}"/>
+                </c:url>
+                <c:url value="/sso" var="suUrl">
+                    <c:param name="kc_idp_hint" value="ace-su-keycloak-oidc"/>
+                    <c:param name="returnUrl" value="${helper.getAbsoluteHostURL(pageContext.request).concat(domainRelativeReturnUrl)}"/>
+                </c:url>
+                <a id="login-link" href="${loginUrl}" class="styled-button">Login</a> <a id="su-link" href="${suUrl}" class="styled-button" href="#">SU</a>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
