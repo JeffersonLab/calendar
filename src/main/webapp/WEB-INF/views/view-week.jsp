@@ -5,8 +5,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <jsp:useBean id="helper" scope="request" class="org.jlab.atlis.calendar.presentation.utility.CalendarHelper"/>
 <jsp:useBean id="selectHelper" class="org.jlab.atlis.calendar.presentation.utility.SelectHelper" scope="request"/>
-<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}/view-week?year=${week.year}&week=${week.week}"
-       var="absViewURL"/>
+<c:set value="/view-week?year=${week.year}&week=${week.week}" var="viewURL"/>
+<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}${viewURL}" var="absViewURL"/>
 <c:set var="title" value="Week ${week.week} ${week.year}"/>
 <t:page title="${title}">
         <jsp:attribute name="stylesheets">

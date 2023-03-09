@@ -5,8 +5,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <jsp:useBean id="helper" scope="request" class="org.jlab.atlis.calendar.presentation.utility.CalendarHelper"/>
 <jsp:useBean id="selectHelper" class="org.jlab.atlis.calendar.presentation.utility.SelectHelper" scope="request"/>
-<%-- wkhtmltopdf doesn't allow anchors which match current url (or url param to wkhtmltopdf?) so we make the link slightly different --%>
-<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}?year=${startYear}&week=${startWeek}" var="absViewURL"/>
+<c:set value="/?year=${startYear}&week=${startWeek}}" var="viewURL"/>
+<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}${viewURL}" var="absViewURL"/>
 <c:set var="title" value="Outlook"/>
 <t:page title="${title}">
         <jsp:attribute name="stylesheets">

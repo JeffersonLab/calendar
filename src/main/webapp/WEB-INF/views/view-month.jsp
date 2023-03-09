@@ -5,8 +5,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <jsp:useBean id="helper" scope="request" class="org.jlab.atlis.calendar.presentation.utility.CalendarHelper"/>
 <jsp:useBean id="selectHelper" class="org.jlab.atlis.calendar.presentation.utility.SelectHelper" scope="request"/>
-<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}/${helper.calculateViewMonthURL(calendarId, calendar.yearMonth)}"
-       var="absViewURL"/>
+<c:set value="/${helper.calculateViewMonthURL(calendarId, calendar.yearMonth)}" var="viewURL"/>
+<c:url value="${helper.getAbsoluteBaseURL(pageContext.request)}${viewURL}" var="absViewURL"/>
 <f:formatDate value="${calendar.yearMonth}" pattern="MMMM yyyy" var="titleDate"/>
 <c:set var="title" value="${titleDate}"/>
 <t:page title="${title}">
