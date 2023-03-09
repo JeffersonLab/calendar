@@ -5,13 +5,13 @@
 <c:forEach items="${fragmentDays}" var="day">
     <f:formatDate value="${day.yearMonthDay}" pattern="yyyy-MM-dd" var="itemDate"/>
     <f:formatDate value="${day.yearMonthDay}" pattern="yyyy:MM:dd" var="itemDateColon"/>
-    <td class="shift-events-cell${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null ? ' ui-state-orderable' : ' ui-state-not-orderable'}">
+    <td class="shift-events-cell${pageContext.request.isUserInRole('calendar-admin') and param.editable ne null ? ' ui-state-orderable' : ' ui-state-not-orderable'}">
         <ul class="sortable" data-day="${itemDate}" data-shift="${fragmentShift}">
             <c:forEach items="${day.getOccurrences(fragmentShift, 'SHOW', true, true)}" var="occurrence" varStatus="status">
                 <c:choose>
                     <c:when test="${occurrence.occurrenceId ne null}">
                         <li id="order_${occurrence.occurrenceId}"${occurrence.styles ne null ? ' class="'.concat(helper.getCSSClasses(occurrence.styles)).concat('"') : ''}>
-                            <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                            <c:if test="${pageContext.request.isUserInRole('calendar-admin') and param.editable ne null}">
                                 <span class="editable">
                                     <a class="ui-icon ui-icon-pencil" href="edit-occurrence?occurrenceId=${occurrence.occurrenceId}" title="Edit Occurrence"></a>                                   
                                 </span>
@@ -22,7 +22,7 @@
                                     <a class="ui-icon ui-icon-extlink" href="${helper.calculateAtlisURL(occurrence.event.taskId)}" title="View ATLis Task"></a>
                                 </span>
                             </c:if>                           
-                            <span class="viewOccurrenceOpener" data-occurrenceId="${occurrence.occurrenceId}" data-eventId="${occurrence.event.eventId}" data-title="${fn:escapeXml(occurrence.title)}" data-liaison="${fn:escapeXml(occurrence.liaison)}" data-remark="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) ? fn:escapeXml(occurrence.remark) : ''}"${occurrence.description ne null ? ' title="'.concat(fn:escapeXml(occurrence.description)).concat('"') : ''}><c:out value="${occurrence.title}"/></span>
+                            <span class="viewOccurrenceOpener" data-occurrenceId="${occurrence.occurrenceId}" data-eventId="${occurrence.event.eventId}" data-title="${fn:escapeXml(occurrence.title)}" data-liaison="${fn:escapeXml(occurrence.liaison)}" data-remark="${pageContext.request.isUserInRole('calendar-admin') ? fn:escapeXml(occurrence.remark) : ''}"${occurrence.description ne null ? ' title="'.concat(fn:escapeXml(occurrence.description)).concat('"') : ''}><c:out value="${occurrence.title}"/></span>
                         </li>
                     </c:when>
                     <c:otherwise>

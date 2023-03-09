@@ -33,7 +33,7 @@ import org.jlab.atlis.calendar.persistence.projection.SelectedOccurrenceFields;
  * @author ryans
  */
 @Stateless
-@DeclareRoles({"oability", "pd"})
+@DeclareRoles("calendar-admin")
 public class OccurrenceFacade extends AbstractFacade<Occurrence> {
 
     private static final Logger LOGGER = Logger.getLogger(OccurrenceFacade.class.getName());
@@ -54,7 +54,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         super(Occurrence.class);
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void editABunch(List<Occurrence> occurrences) {
         //Query deferred = em.createNativeQuery("set constraint occurrence_ak1 deferred");
         //Query immediate = em.createNativeQuery("set constraint occurrence_ak1 immediate");
@@ -70,7 +70,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         //em.flush();
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void move(int fromCalendarId, Date fromStart, int numberOfDays, int toCalendarId, Date toStart) {
         Date cutEnd = TimeHelper.add(fromStart, numberOfDays - 1, Calendar.DATE);
         Date moveToEnd = TimeHelper.add(toStart, numberOfDays - 1, Calendar.DATE);
@@ -129,7 +129,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         return q.getResultList();
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public List<Occurrence> findDay(int calendarId, Date yearMonthDay) {
         TypedQuery<Occurrence> q = em.createNamedQuery("Occurrence.findByYearMonthDay", Occurrence.class);
 
@@ -141,7 +141,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
 
     @PermitAll    
     public List<Occurrence> findDayAsRole(int calendarId, Date yearMonthDay) {
-        boolean om = context.isCallerInRole("oability");
+        boolean om = context.isCallerInRole("calendar-admin");
 
         TypedQuery<Occurrence> q = null;
 
@@ -211,7 +211,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         return orderId;
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public boolean removeAndCleanupEvent(Occurrence occurrence) {
         Occurrence o = em.merge(occurrence); // Make it managed!
 
@@ -282,7 +282,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         return oses;
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void batchUpdate(Occurrence occurrence, List<BigInteger> selectedOccurrences, SelectedOccurrenceFields selectedFields) {
         if (selectedOccurrences.size() > 0 && selectedFields.count() > 0) {
             for (BigInteger id : selectedOccurrences) {
@@ -319,7 +319,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         }
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void batchDelete(BigInteger eventId, List<BigInteger> selectedOccurrences) {
         Event event = eventFacade.find(eventId);
         List<Occurrence> occurrenceList = event.getOccurrenceList();
@@ -335,7 +335,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         }
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void batchHide(BigInteger eventId, List<BigInteger> selectedOccurrences) {
         Event event = eventFacade.find(eventId);
         List<Occurrence> occurrenceList = event.getOccurrenceList();
@@ -346,7 +346,7 @@ public class OccurrenceFacade extends AbstractFacade<Occurrence> {
         }
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void batchShow(BigInteger eventId, List<BigInteger> selectedOccurrences) {
         Event event = eventFacade.find(eventId);
         List<Occurrence> occurrenceList = event.getOccurrenceList();

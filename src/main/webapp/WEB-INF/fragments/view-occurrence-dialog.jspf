@@ -29,7 +29,7 @@
             <span id="oliaison"></span>
         </dd>
     </dl>
-        <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+        <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
         <dl class="min-fields-special">
             <dt>
             <label>Operability Comments</label>
@@ -41,7 +41,7 @@
             <label>Event</label>
             </dt>
             <dd>
-                <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                     <a id="oeventideditlink" title="Edit Event" class="styled-button" href="#">Edit</a>
                 </c:if>                
             </dd>

@@ -10,7 +10,7 @@
     <f:formatDate value="${lastRevision.revisionDate}" pattern="yyyy-MM-dd HH:mm" var="revisionDate"/>
     <span class="last-revision">Last Modified: 
         <c:choose>
-            <c:when test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+            <c:when test="${pageContext.request.isUserInRole('calendar-admin')}">
                 <a class="alwaysblue" href="view-audit"><c:out value="${revisionDate}"/></a>
             </c:when>
             <c:otherwise>

@@ -23,7 +23,7 @@ import org.jlab.atlis.calendar.persistence.entity.CalendarRevisionInfo_;
  * @author ryans
  */
 @Stateless
-@DeclareRoles({"oability", "pd"})
+@DeclareRoles("calendar-admin")
 public class AuditManager {
 
     @PersistenceContext(unitName = "calendarPU")
@@ -65,7 +65,7 @@ public class AuditManager {
         return em.createQuery(cq);
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public int count(AuditSearchFilter filter) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = builder.createQuery(Long.class);
@@ -86,13 +86,13 @@ public class AuditManager {
         return count.intValue();
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public List<CalendarRevisionInfo> findWithDynamicCriteria(AuditSearchFilter filter) {
         TypedQuery<CalendarRevisionInfo> q = getRevisionQuery(filter);
         return q.getResultList();
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public List<CalendarRevisionInfo> findWithDynamicCriteria(AuditSearchFilter filter, Paginator paginator) {
         TypedQuery<CalendarRevisionInfo> q = getRevisionQuery(filter);
 

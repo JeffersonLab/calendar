@@ -54,7 +54,7 @@
                         <th>Liaison</th>
                         <th>Display</th>
                         <th>Style</th>
-                        <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                        <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                             <th>Operability Comments</th>
                             <th class="action-column"></th>
                         </c:if>
@@ -83,7 +83,7 @@
                                             value="${s.occurrenceStyleChoice.name}"/></span>
                                 </c:forEach>
                             </td>
-                            <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                            <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                                 <td class="linkify"><c:out value="${o.remark}"/></td>
                                 <td>
                                     <form class="deleteform" method="post" action="view-occurrence">
@@ -104,14 +104,14 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                     <a id="create-link" class="styled-button" href="edit-occurrence?eventId=${event.eventId}">Create</a>
                 </c:if>
             </div>
             <form method="post" action="view-event">
                 <input type="hidden" name="eventId" value="${event.eventId}"/>
                 <div class="action-button-panel">
-                    <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                    <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                         <a class="styled-button" href="edit-event?eventId=${event.eventId}">Edit Event</a>
                         <input class="styled-button" type="submit" value="Delete Event"
                                onclick="return confirm('Are you sure you want to delete this event and all occurrences?');"/>

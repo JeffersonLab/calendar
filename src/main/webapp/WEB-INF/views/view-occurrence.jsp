@@ -34,7 +34,7 @@
         </div>
         <div class="content">
             <div class="top-left-nav">
-                <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                     <a class="alwaysblue" href="edit-occurrence?occurrenceId=${occurrence.occurrenceId}">Edit
                         Occurrence</a>
                     <a class="alwaysblue" href="copy-occurrence?copyId=${occurrence.occurrenceId}">Copy Occurrence</a>
@@ -96,7 +96,7 @@
                                     value="${s.occurrenceStyleChoice.name}"/></span>
                         </c:forEach>
                     </dd>
-                    <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                    <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                         <dt>
                             <label>Operability Comments</label>
                         </dt>
@@ -107,7 +107,7 @@
                 </dl>
                 <input type="hidden" name="occurrenceId" value="${occurrence.occurrenceId}"/>
                 <div class="action-button-panel">
-                    <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                    <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                         <input class="styled-button" type="submit" value="Delete"
                                onclick="return confirm('Are you sure you want to delete this occurrence?');"/>
                     </c:if>

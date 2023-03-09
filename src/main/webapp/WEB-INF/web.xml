@@ -53,14 +53,14 @@
             <url-pattern>/sso</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>ipausers</role-name>
+            <role-name>**</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>Enforce Authenticated Operability Manager over SSL on edit and view audit</display-name>
+        <display-name>Enforce Authenticated Admin over SSL on edit and view audit</display-name>
         <web-resource-collection>
             <web-resource-name>Secure Resources</web-resource-name>
             <description/>
@@ -71,8 +71,7 @@
             <url-pattern>/view-audit</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>oability</role-name>
-            <role-name>pd</role-name>
+            <role-name>calendar-admin</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
@@ -80,20 +79,10 @@
         </user-data-constraint>
     </security-constraint>
     <login-config>
-        <auth-method>KEYCLOAK</auth-method>
-        <realm-name>jlab</realm-name>
+        <auth-method>OIDC</auth-method>
     </login-config>
     <security-role>
-        <description>Every ACE user is a member of ipausers.</description>
-        <role-name>ipausers</role-name>
-    </security-role>
-    <security-role>
-        <description>Super user who is authorized to make changes to the SAD calendar</description>
-        <role-name>oability</role-name>
-    </security-role>
-    <security-role>
-        <description>Program Deputy</description>
-        <role-name>pd</role-name>
+        <role-name>calendar-admin</role-name>
     </security-role>
     <distributable/>
 </web-app>

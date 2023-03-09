@@ -20,7 +20,7 @@ import org.jlab.atlis.calendar.persistence.projection.DayAndShift;
  * @author ryans
  */
 @Stateless
-@DeclareRoles({"oability", "pd"})
+@DeclareRoles("calendar-admin")
 public class EventFacade extends AbstractFacade<Event> {
 
     @PersistenceContext(unitName = "calendarPU")
@@ -51,7 +51,7 @@ public class EventFacade extends AbstractFacade<Event> {
         return event;
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void createEventWithOccurrences(Occurrence occurrence, Set<DayAndShift> instances) {
         Event event = occurrence.getEvent();
 
@@ -85,7 +85,7 @@ public class EventFacade extends AbstractFacade<Event> {
         }
     }
     
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void copyOccurrence(Occurrence occurrence, List<OccurrenceStyleChoice> styles, Set<DayAndShift> instances) {
         Event event = occurrence.getEvent();
         

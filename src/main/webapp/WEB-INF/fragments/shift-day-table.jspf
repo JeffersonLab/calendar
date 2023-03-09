@@ -16,7 +16,7 @@
                         <th>Liaison</th>
                         <th>Display</th>
                         <th>Style</th>
-                        <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                        <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                             <th>Operability Comments</th>
                             <th class="action-column">Event</th>
                             <th class="action-column">Occurrence</th>
@@ -45,7 +45,7 @@
                                     <span class="${s.occurrenceStyleChoice.cssClassName}"><c:out value="${s.occurrenceStyleChoice.name}"/></span>
                                 </c:forEach>
                             </td>
-                            <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+                            <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
                                 <td class="linkify"><c:out value="${occurrence.remark}"/></td>
                                 <td>
                                     <c:if test="${not empty occurrence.event.eventId}">                              

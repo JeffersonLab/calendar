@@ -16,7 +16,7 @@ import javax.persistence.criteria.Root;
  *
  * @author ryans
  */
-@DeclareRoles({"oability", "pd"})
+@DeclareRoles("calendar-admin")
 public abstract class AbstractFacade<T> {
     private final Class<T> entityClass;
 
@@ -26,17 +26,17 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void edit(T entity) {
         getEntityManager().merge(entity);
     }
 
-    @RolesAllowed({"oability", "pd"})
+    @RolesAllowed("calendar-admin")
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }

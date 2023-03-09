@@ -16,11 +16,11 @@
                     <c:if test="${day.more}">
                         <span class="more-events">(more...)</span>
                     </c:if>
-                    <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                    <c:if test="${pageContext.request.isUserInRole('calendar-admin') and param.editable ne null}">
                         <a class="add-event undecorated-link" title="Add Event" href="${helper.calculateAddEventURL(calendarId, day.yearMonthDay)}">+</a>   
                     </c:if>
                 </c:if>
-                <c:if test="${(pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')) and param.editable ne null}">
+                <c:if test="${pageContext.request.isUserInRole('calendar-admin') and param.editable ne null}">
                     <ul class="drag-container">
                         <li class="draggable spacer"><span class="remove">Remove Space</span><span class="drag-handle ui-icon ui-icon-arrow-4-diag" title="Click and Hold to Drag"></span></li>
                     </ul>

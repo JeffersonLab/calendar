@@ -28,7 +28,7 @@
                 <%@include file="../fragments/key.jspf"%>
             </div>
         </div>
-        <c:if test="${pageContext.request.isUserInRole('oability') or pageContext.request.isUserInRole('pd')}">
+        <c:if test="${pageContext.request.isUserInRole('calendar-admin')}">
             <div id="editable-control-panel-hook">
                 <div id="editable-control-panel">
                     <form id="editable-form" method="get" action="view-outlook">

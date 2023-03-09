@@ -53,7 +53,7 @@ public class ExportExcel extends HttpServlet {
             throw new CalendarException("Unable to export Excel: " + e.getMessage());
         }
 
-        boolean om = request.isUserInRole("oability") || request.isUserInRole("pd");
+        boolean om = request.isUserInRole("calendar-admin");
         
         List<Occurrence> occurrences = null;
         
