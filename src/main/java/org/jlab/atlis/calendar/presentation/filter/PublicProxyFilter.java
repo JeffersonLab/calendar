@@ -20,7 +20,7 @@ public class PublicProxyFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp,
-            FilterChain chain)
+                         FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
@@ -36,7 +36,7 @@ public class PublicProxyFilter implements Filter {
             request.setAttribute("cdnContextPath", "");
         } else {
             ServletContext context = request.getServletContext();
-            request.setAttribute("cdnContextPath", "//" + System.getenv("CDN_HOSTNAME"));
+            request.setAttribute("cdnContextPath", "//" + System.getenv("CDN_SERVER"));
         }
 
         chain.doFilter(request, response);
