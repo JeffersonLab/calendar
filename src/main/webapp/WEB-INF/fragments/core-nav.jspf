@@ -101,7 +101,7 @@
         </dl>
         <div class="dialog-button-panel">
             <button id="helpclose" class="styled-button">Close</button>
-            <a id="userguidelink" class="styled-button" href="https://devweb.acc.jlab.org/twiki/bin/view/SWDocs/ScheduledAcceleratorDownCalendar">User Guide</a>
+            <a id="userguidelink" class="styled-button" href="https://github.com/JeffersonLab/calendar">Calendar Home</a>
         </div>
     </div>
     <div id="moveDialog" class="dialog" title="Select Day(s) to Move">
