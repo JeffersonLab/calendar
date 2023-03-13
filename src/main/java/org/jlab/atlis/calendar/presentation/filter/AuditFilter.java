@@ -38,10 +38,6 @@ public class AuditFilter implements Filter {
         
         String username = httpRequest.getRemoteUser();
         
-        if(username != null) {
-            username = username.split(":")[2];
-        }
-        
         context.setIp(ip);
         context.setUsername(username);
         
