@@ -325,7 +325,11 @@ public class EditEvent extends HttpServlet {
         }  
         
         Calendar selectedCalendar = calendarFacade.find(calendarId);         
-        
+
+        if(selectedCalendar == null) {
+            throw new CalendarException("No calendar configured with ID: " + calendarId);
+        }
+
         event.setCalendar(selectedCalendar);
         //// END SET CALENDAR
         

@@ -281,7 +281,20 @@ public class Occurrence implements Comparable<Occurrence>, Serializable {
 
     @Override
     public String toString() {
-        return "org.jlab.atlis.calendar.persistence.entity.Occurrence[ occurrenceId=" + occurrenceId + " ]";
+        return "Occurrence{" +
+                "occurrenceId=" + occurrenceId +
+                ", title='" + title + '\'' +
+                ", yearMonthDay=" + yearMonthDay +
+                ", shift=" + shift +
+                ", remark='" + remark + '\'' +
+                ", display=" + display +
+                ", liaison='" + liaison + '\'' +
+                ", description='" + description + '\'' +
+                ", event=" + event +
+                ", orderId=" + orderId +
+                //", styles=" + styles +
+                ", date='" + date + '\'' +
+                '}';
     }
 
     @Override

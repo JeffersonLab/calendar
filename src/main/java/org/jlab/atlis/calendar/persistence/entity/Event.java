@@ -142,7 +142,13 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "org.jlab.atlis.calendar.persistence.entity.Event[ eventId=" + eventId + " ]";
+        return "Event{" +
+                "calendar=" + calendar +
+                ", eventId=" + eventId +
+                ", taskId=" + taskId +
+                //", occurrenceList=" + occurrenceList +
+                ", sorted=" + sorted +
+                '}';
     }
 
     public Calendar getCalendar() {
