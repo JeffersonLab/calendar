@@ -55,19 +55,18 @@
 <script type="text/javascript" src="resources/v${initParam.releaseNumber}/js/calendar.js"></script>
 <script>
     jlab = jlab || {};
-    jlab.keycloakHostname = '${env["KEYCLOAK_HOSTNAME"]}';
-    jlab.clientId = '${env["KEYCLOAK_CLIENT_ID_CALENDAR"]}';
-    <c:url var="url" value="https://${env['KEYCLOAK_HOSTNAME']}/auth/realms/jlab/protocol/openid-connect/auth">
-    <c:param name="client_id" value="account"/>
-    <c:param name="kc_idp_hint" value="cue-keycloak-oidc"/>
-    <c:param name="response_type" value="code"/>
-    <c:param name="redirect_uri" value="https://${env['KEYCLOAK_HOSTNAME']}/auth/realms/jlab/account/"/>
+    jlab.keycloakHostname = '${env["KEYCLOAK_SERVER_FRONTEND"]}';
+    <c:url var="iframeLoginUrl" value="https://${env['KEYCLOAK_HOSTNAME']}/auth/realms/${env['KEYCLOAK_REALM']}/protocol/openid-connect/auth">
+        <c:param name="client_id" value="account"/>
+        <c:param name="kc_idp_hint" value="${env['KEYCLOAK_HEADLESS_IDP']}"/>
+        <c:param name="response_type" value="code"/>
+        <c:param name="redirect_uri" value="https://${env['KEYCLOAK_SERVER_FRONTEND']}/auth/realms/${env['KEYCLOAK_REALM']}/account/"/>
     </c:url>
-    jlab.loginUrl = '${url}';
-    <c:url var="url" value="https://${env['KEYCLOAK_HOSTNAME']}/auth/realms/jlab/protocol/openid-connect/logout">
-    <c:param name="redirect_uri" value="https://${env['KEYCLOAK_HOSTNAME']}/auth/realms/jlab/account/"/>
+    jlab.iframeLoginUrl = '${empty env['KEYCLOAK_HEADLESS_IDP'] ? '' : iframeLoginUrl}';
+    <c:url var="suLogoutUrl" value="https://${env['KEYCLOAK_SERVER_FRONTEND']}/auth/realms/${env['KEYCLOAK_REALM']}/protocol/openid-connect/logout">
+        <c:param name="redirect_uri" value="https://${env['KEYCLOAK_SERVER_FRONTEND']}/auth/realms/${env['KEYCLOAK_REALM']}/account/"/>
     </c:url>
-    jlab.logoutUrl = '${url}';
+    jlab.suLogoutUrl = '${suULogoutUrl}';
 </script>
 <jsp:invoke fragment="scripts"/>
 </body>
