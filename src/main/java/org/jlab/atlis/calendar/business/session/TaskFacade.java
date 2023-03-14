@@ -125,44 +125,4 @@ public class TaskFacade extends AbstractFacade<Task> {
         
         return count.intValue();
     }
-    
-    @PermitAll     
-    public Task findWithDescription(BigInteger taskId) {       
-        Task task = find(taskId);
-        
-        if(task != null) {
-            String description = null;
-
-            Query q = em.createNativeQuery("select text from atlis7_owner.note_fields where note_field_type_id = 100 and task_id = ?");
-
-            q.setParameter(1, taskId);
-
-            try {
-                Object result = q.getSingleResult();
-                
-                if(result instanceof String) { // EclipseLink converts Clob to String automatically
-                    description = (String)result;
-                }
-                else if(result instanceof Clob) { // Hibernate wants me to do conversion myself
-                    Clob c = (Clob)result;
-                    try {
-                        description = c.getSubString(1L, (int)c.length()); // May truncate
-                    }
-                    catch(SQLException e) {
-                        throw new EJBException("Unable to query for description", e);
-                    }
-                }
-                else {
-                    throw new EJBException("Unable to query for description: Unknown type: " + result.getClass());
-                }
-            }
-            catch(NoResultException e) {
-                // We'll be using null
-            }
-            
-            task.setDescription(description);
-        }
-        
-        return task;
-    }
 }

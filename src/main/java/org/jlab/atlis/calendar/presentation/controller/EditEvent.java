@@ -142,7 +142,7 @@ public class EditEvent extends HttpServlet {
                 throw new CalendarException("Unable to edit event: Invalid taskId: " + e.getMessage());
             }
 
-            Task task = taskFacade.findWithDescription(taskId);
+            Task task = taskFacade.find(taskId);
 
             if (task == null) {
                 throw new CalendarException("Unable to edit event: Unable to locate ATLis task with ID = " + taskId);
@@ -155,7 +155,7 @@ public class EditEvent extends HttpServlet {
             occurrence.setEvent(event);
             occurrence.setYearMonthDay(task.getScheduleDate());
             occurrence.setTitle(task.getTitle());
-            occurrence.setLiaison(task.getContactInfo());
+            occurrence.setLiaison(task.getLiaison());
             occurrence.setDescription(task.getDescription());
         } else { // Create new (not from ATLis)
             String yearMonthDayStr = request.getParameter("yearMonthDay");

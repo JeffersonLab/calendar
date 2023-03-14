@@ -3,16 +3,7 @@ package org.jlab.atlis.calendar.persistence.entity;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,7 +12,7 @@ import javax.validation.constraints.Size;
  * @author ryans
  */
 @Entity
-@Table(name = "TASKS", schema = "ATLIS7_OWNER")
+@Table(name = "ATLIS_TASK", schema = "CALENDAR_OWNER")
 @NamedQueries({
     @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
     @NamedQuery(name = "Task.findByTaskId", query = "SELECT t FROM Task t WHERE t.id = :taskId"),
@@ -32,22 +23,24 @@ public class Task implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ATLIS_TASK_ID")
     private BigInteger taskId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "TITLE")
     private String title;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Column(name = "DESCRIPTION")
+    private String description;
     @Size(max = 255)
-    @Column(name = "CONTACT_INFO")
-    private String contactInfo;
-    @Column(name = "SCHEDULED_AT")
+    @Column(name = "LIAISON")
+    private String liaison;
+    @Column(name = "SCHEDULED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date scheduleDate;
-
-    @Transient
-    private String description;
     
     public Task() {
     }
@@ -93,12 +86,12 @@ public class Task implements Serializable {
         this.scheduleDate = scheduleDate;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    public String getLiaison() {
+        return liaison;
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setLiaison(String contactInfo) {
+        this.liaison = contactInfo;
     }
 
     @Override
