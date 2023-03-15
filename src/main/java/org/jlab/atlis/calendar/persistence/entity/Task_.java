@@ -13,8 +13,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 public class Task_ {
     public static volatile SingularAttribute<Task, BigInteger> taskId;
     public static volatile SingularAttribute<Task, String> title;
-    public static volatile SingularAttribute<Task, Date> scheduleDate;
-    public static volatile SingularAttribute<Task, String> contactInfo;
+    public static volatile SingularAttribute<Task, Date> scheduledDate;
+    public static volatile SingularAttribute<Task, String> liaison;
     public static volatile SingularAttribute<Task, String> description;    
 }
 

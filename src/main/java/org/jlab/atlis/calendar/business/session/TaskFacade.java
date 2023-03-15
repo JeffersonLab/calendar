@@ -1,18 +1,11 @@
 package org.jlab.atlis.calendar.business.session;
 
-import java.math.BigInteger;
-import java.sql.Clob;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,21 +34,11 @@ public class TaskFacade extends AbstractFacade<Task> {
         super(Task.class);
     }
     
-    @PermitAll     
-    public List<Task> findScheduledRange(Date start, Date end) {
-        TypedQuery<Task> q = em.createNamedQuery("Task.findByScheduledRange", Task.class);
-
-        q.setParameter("start", start);
-        q.setParameter("end", end);
-
-        return q.getResultList();
-    }
-    
     private Predicate[] getPredicates(AtlisSearchFilter filter, CriteriaBuilder builder, CriteriaQuery cq, Root<Task> task) {                    
         List<Predicate> predicates = new ArrayList<>();
         
         if(filter.getStart() != null && filter.getEnd() != null) {
-            Predicate condition = builder.between(task.get(Task_.scheduleDate), filter.getStart(), filter.getEnd());
+            Predicate condition = builder.between(task.get(Task_.scheduledDate), filter.getStart(), filter.getEnd());
             predicates.add(condition);
         }
         
@@ -65,7 +48,7 @@ public class TaskFacade extends AbstractFacade<Task> {
         }
         
         if(filter.getLiaisonPhrase() != null && !filter.getLiaisonPhrase().trim().isEmpty()) {
-            Predicate condition = builder.like(builder.upper(task.get(Task_.contactInfo)), "%" + filter.getLiaisonPhrase().toUpperCase() + "%");
+            Predicate condition = builder.like(builder.upper(task.get(Task_.liaison)), "%" + filter.getLiaisonPhrase().toUpperCase() + "%");
             predicates.add(condition);
         }                
         

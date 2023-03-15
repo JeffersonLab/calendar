@@ -40,7 +40,7 @@ public class Task implements Serializable {
     private String liaison;
     @Column(name = "SCHEDULED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date scheduleDate;
+    private Date scheduledDate;
     
     public Task() {
     }
@@ -78,20 +78,20 @@ public class Task implements Serializable {
         this.title = title;
     }
 
-    public Date getScheduleDate() {
-        return scheduleDate;
+    public Date getScheduledDate() {
+        return scheduledDate;
     }
 
-    public void setScheduleDate(Date scheduleDate) {
-        this.scheduleDate = scheduleDate;
+    public void setScheduledDate(Date scheduledDate) {
+        this.scheduledDate = scheduledDate;
     }
 
     public String getLiaison() {
         return liaison;
     }
 
-    public void setLiaison(String contactInfo) {
-        this.liaison = contactInfo;
+    public void setLiaison(String liaison) {
+        this.liaison = liaison;
     }
 
     @Override

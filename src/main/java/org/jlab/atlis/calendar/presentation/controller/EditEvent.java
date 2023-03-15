@@ -153,7 +153,7 @@ public class EditEvent extends HttpServlet {
 
             occurrence = new Occurrence();
             occurrence.setEvent(event);
-            occurrence.setYearMonthDay(task.getScheduleDate());
+            occurrence.setYearMonthDay(task.getScheduledDate());
             occurrence.setTitle(task.getTitle());
             occurrence.setLiaison(task.getLiaison());
             occurrence.setDescription(task.getDescription());

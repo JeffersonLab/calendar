@@ -134,8 +134,8 @@
                             <td><a class="alwaysblue" href="${helper.calculateAtlisURL(task.taskId)}">${task.taskId}</a>
                             </td>
                             <td><c:out value="${task.title}"/></td>
-                            <td><c:out value="${task.contactInfo}"/></td>
-                            <td><f:formatDate value="${task.scheduleDate}" pattern="yyyy-MM-dd"/></td>
+                            <td><c:out value="${task.liaison}"/></td>
+                            <td><f:formatDate value="${task.scheduledDate}" pattern="yyyy-MM-dd"/></td>
                             <td><a class="alwaysblue" href="${helper.calculateAddEventURLFromAtlis(task.taskId)}">Add To
                                 Calendar</a></td>
                         </tr>
