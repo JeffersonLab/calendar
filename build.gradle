@@ -3,10 +3,10 @@ plugins {
 }
 description = "Accelerator task calendar"
 group 'org.jlab'
-version = '3.13.0'
+version = '3.14.0'
 
 ext {
-    releaseDate = 'Mar 13 2023'
+    releaseDate = 'Mar 15 2023'
 }
 tasks.withType(JavaCompile) {
     options.release = 11
