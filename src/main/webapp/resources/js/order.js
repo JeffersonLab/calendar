@@ -40,11 +40,9 @@ $(function () {
         placeholder: "ui-state-highlight",
         cancel: ".editable, .viewOccurrenceOpener",
         beforeStop: function (event, ui) {
-            //console.log('beforeStop', ui.item);
-            itemContext = ui.item;
+            itemContext = ui.item.context;
         },
         receive: function (event, ui) {
-            //console.log('receive', ui.item);
             if ($(itemContext).hasClass("spacer")) {
                 $(itemContext).attr("id", 'order_spacer:global:' + currentControlId++);
             } else {
@@ -53,10 +51,9 @@ $(function () {
             }
         },
         update: function (event, ui) {
-            //console.log('update', ui.item);
             // If spacer move from one list to other we need two separate saves!
             // Otherwise, only save list receiving
-            if (this === ui.item.parent()[0] || $(ui.item).hasClass("spacer")) {
+            if (this === ui.item.parent()[0] || $(ui.item.context).hasClass("spacer")) {
                 $(this).saveOrder();
 
                 if (originalDropId != null) {

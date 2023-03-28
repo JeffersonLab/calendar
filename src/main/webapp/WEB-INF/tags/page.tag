@@ -14,18 +14,18 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/v${initParam.releaseNumber}/img/favicon.ico"/>
     <c:choose>
         <c:when test="${'CDN' eq resourceLocation}">
-            <link type="text/css" rel="stylesheet" href="${cdnContextPath}/jquery-ui/1.13.2/theme/atlis/jquery-ui.min.css"/>
+            <link type="text/css" rel="stylesheet" href="${cdnContextPath}/jquery-ui/1.10.3/theme/atlis/jquery-ui.min.css"/>
             <style>
                 .ui-state-hover > .ui-button-text > .ui-icon {
-                    background-image: url("${cdnContextPath}/jquery-ui/1.13.2/theme/atlis/images/ui-icons_ffff00_256x240.png") !important;
+                    background-image: url("${cdnContextPath}/jquery-ui/1.10.3/theme/atlis/images/ui-icons_ffff00_256x240.png") !important;
                 }
             </style>
         </c:when>
         <c:otherwise><!-- LOCAL -->
-            <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery-ui/1.13.2/theme/atlis/jquery-ui.min.css"/>
+            <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery-ui/1.10.3/theme/atlis/jquery-ui.min.css"/>
             <style>
                 .ui-state-hover > .ui-button-text > .ui-icon {
-                    background-image: url("${pageContext.request.contextPath}/resources/jquery-ui/1.13.2/theme/atlis/images/ui-icons_ffff00_256x240.png") !important;
+                    background-image: url("${pageContext.request.contextPath}/resources/jquery-ui/1.10.3/theme/atlis/images/ui-icons_ffff00_256x240.png") !important;
                 }
             </style>
         </c:otherwise>
@@ -41,12 +41,12 @@
 <jsp:doBody/>
 <c:choose>
     <c:when test="${'CDN' eq resourceLocation}">
-        <script type="text/javascript" src="${cdnContextPath}/jquery/3.6.1.min.js"></script>
-        <script type="text/javascript" src="${cdnContextPath}/jquery-ui/1.13.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="${cdnContextPath}/jquery/1.10.2.min.js"></script>
+        <script type="text/javascript" src="${cdnContextPath}/jquery-ui/1.10.3/jquery-ui.min.js"></script>
     </c:when>
     <c:otherwise><!-- LOCAL -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/3.6.1.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/1.13.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/1.10.2.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/1.10.3/jquery-ui.min.js"></script>
     </c:otherwise>
 </c:choose>
 <script type="text/javascript" src="resources/js/linkify-2.1.min.js"></script>
