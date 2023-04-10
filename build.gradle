@@ -3,7 +3,7 @@ plugins {
 }
 description = "Accelerator task calendar"
 group 'org.jlab'
-version = '3.14.2'
+version = '3.14.3'
 
 ext {
     releaseDate = 'April 10 2023'
