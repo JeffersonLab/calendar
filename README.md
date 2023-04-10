@@ -47,10 +47,13 @@ This application requires a Java 11+ JVM and standard library to run, plus a Jav
 ## Configure
 
 ### Configtime
-Wildfly must be pre-configured before the first deployment of the app.  The [smoothness bash scripts](https://github.com/JeffersonLab/smoothness#configtime) can be used to accomplish this.  See the [Dockerfile](https://github.com/JeffersonLab/calendar/blob/main/Dockerfile) for an example.
+Wildfly must be pre-configured before the first deployment of the app.  The [wildfly bash scripts](https://github.com/JeffersonLab/wildfly#configure) can be used to accomplish this.  See the [Dockerfile](https://github.com/JeffersonLab/calendar/blob/main/Dockerfile) for an example.
 
 ### Runtime
-Uses the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#global-runtime).
+Uses a subset of the [Smoothness Environment Variables](https://github.com/JeffersonLab/smoothness#global-runtime) including:
+ - BACKEND_SERVER_URL
+ - FRONTEND_SERVER_URL
+ - PUPPET_SHOW_SERVER_URL
 
 ### Database
 The application requires an Oracle 18+ database with the following [schema](https://github.com/JeffersonLab/calendar/tree/main/docker/oracle/setup) installed.   The application server hosting the app must also be configured with a JNDI datasource.

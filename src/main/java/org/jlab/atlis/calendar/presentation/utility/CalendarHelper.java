@@ -296,7 +296,7 @@ public class CalendarHelper {
          * server DID tell you your app server secure port, it might not match outward facing proxy server.
          * */
 
-        return "https://" + System.getenv("PROXY_SERVER");
+        return System.getenv("FRONTEND_SERVER_URL");
     }
     
     public String getAbsoluteBaseURL(HttpServletRequest request) {
