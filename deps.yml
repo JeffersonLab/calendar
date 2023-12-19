@@ -13,7 +13,9 @@ services:
       - ./docker/oracle/setup:/container-entrypoint-initdb.d
 
   keycloak:
-    image: quay.io/keycloak/keycloak:23.0.3
+    build:
+      context: .
+      dockerfile: Dockerfile-keycloak
     hostname: keycloak
     container_name: keycloak
     ports:
