@@ -6,3 +6,5 @@ RUN dnf install --installroot /mnt/rootfs curl --releasever 9 --setopt install_w
 
 FROM quay.io/keycloak/keycloak
 COPY --from=ubi-micro-build /mnt/rootfs /
+
+RUN echo "log-level=INFO,org.keycloak.protocol.oidc.endpoints:TRACE" >> /opt/keycloak/conf/keycloak.conf
