@@ -4,11 +4,9 @@ plugins {
 }
 description = "Accelerator task calendar"
 group 'org.jlab'
-version = '3.14.3'
+version new File("${projectDir}/VERSION").text.trim()
+ext.releaseDate = new Date().format('MMM dd yyyy')
 
-ext {
-    releaseDate = 'April 10 2023'
-}
 tasks.withType(JavaCompile) {
     options.release = 11
     options.encoding = 'UTF-8'
