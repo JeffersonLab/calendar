@@ -1,4 +1,4 @@
-# calendar [![CI](https://github.com/JeffersonLab/calendar/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffersonLab/calendar/actions/workflows/ci.yml) [![Docker](https://img.shields.io/docker/v/jeffersonlab/calendar?sort=semver&label=DockerHub)](https://hub.docker.com/r/jeffersonlab/calendar)
+# calendar [![CI](https://github.com/JeffersonLab/calendar/actions/workflows/ci.yaml/badge.svg)](https://github.com/JeffersonLab/calendar/actions/workflows/ci.yaml) [![Docker](https://img.shields.io/docker/v/jeffersonlab/calendar?sort=semver&label=DockerHub)](https://hub.docker.com/r/jeffersonlab/calendar)
 A [Java EE 8](https://en.wikipedia.org/wiki/Jakarta_EE) web application for visualizing schedules and aiding work coordination at Jefferson Lab.
 
 ![Screenshot](https://github.com/JeffersonLab/calendar/raw/main/Screenshot.png?raw=true "Screenshot")
@@ -40,7 +40,7 @@ http://localhost:8080/calendar
 ## Install
 This application requires a Java 11+ JVM and standard library to run, plus a Java EE 8+ application server (developed with Wildfly).
 
-1. Install service [dependencies](https://github.com/JeffersonLab/calendar/blob/main/deps.yml)
+1. Install service [dependencies](https://github.com/JeffersonLab/calendar/blob/main/deps.yaml)
 2. Download [Wildfly 26.1.3](https://www.wildfly.org/downloads/)
 3. [Configure](https://github.com/JeffersonLab/calendar#configure) Wildfly and start it
 4. Download [calendar.war](https://github.com/JeffersonLab/calendar/releases) and deploy it to Wildfly
@@ -76,7 +76,7 @@ gradlew build
 ## Develop
 In order to iterate rapidly when making changes it's often useful to run the app directly on the local workstation, perhaps leveraging an IDE.  In this scenario run the service dependencies with:
 ```
-docker compose -f deps.yml up
+docker compose -f deps.yaml up
 ```
 **Note**: The local install of Wildfly should be [configured](https://github.com/JeffersonLab/calendar#configure) to proxy connections to services via localhost and therefore the environment variables should contain:
 ```
@@ -88,12 +88,15 @@ Further, the local DataSource must also leverage localhost port forwarding so th
 The [server](https://github.com/JeffersonLab/wildfly/blob/main/scripts/server-setup.sh) and [app](https://github.com/JeffersonLab/wildfly/blob/main/scripts/app-setup.sh) setup scripts can be used to setup a local instance of Wildfly. 
 
 ## Release
-1. Bump the date and version number in build.gradle and commit and push to GitHub (using [Semantic Versioning](https://semver.org/)).
-2. Create a new release on the GitHub Releases page corresponding to the same version in the build.gradle.   The release should enumerate changes and link issues.   A war artifact can be attached to the release to facilitate easy install by users.
-3. [Publish to DockerHub](https://github.com/JeffersonLab/calendar/actions/workflows/docker-publish.yml) GitHub Action should run automatically.
-4. Bump and commit quick start [image version](https://github.com/JeffersonLab/calendar/blob/main/docker-compose.override.yml)
+1. Bump the version number in the VERSION file and commit and push to GitHub (using [Semantic Versioning](https://semver.org/)).
+2. The [CD](https://github.com/JeffersonLab/calendar/blob/main/.github/workflows/cd.yaml) GitHub Action should run automatically invoking:
+    - The [Create release](https://github.com/JeffersonLab/java-workflows/blob/main/.github/workflows/gh-release.yaml) GitHub Action to tag the source and create release notes summarizing any pull requests.   Edit the release notes to add any missing details.  A war file artifact is attached to the release.
+    - The [Publish docker image](https://github.com/JeffersonLab/container-workflows/blob/main/.github/workflows/docker-publish.yaml) GitHub Action to create a new demo Docker image.
+    - The [Deploy to JLab](https://github.com/JeffersonLab/general-workflows/blob/main/.github/workflows/jlab-deploy-app.yaml) GitHub Action to deploy to the JLab test environment.
 
 ## Deploy
+The deploy to JLab's acctest is handled automatically via the release workflow.
+
 At JLab this app is found at [ace.jlab.org/calendar](https://ace.jlab.org/calendar) and internally at [acctest.acc.jlab.org/calendar](https://acctest.acc.jlab.org/calendar).  However, those servers are proxies for `wildfly6.acc.jlab.org` and `wildflytest6.acc.jlab.org` respectively.   A [deploy script](https://github.com/JeffersonLab/wildfly/blob/main/scripts/deploy.sh) is provided to automate wget and deploy.  Example:
 
 ```

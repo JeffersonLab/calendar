@@ -1,3 +1,3 @@
 services:
   calendar:
-    image: jeffersonlab/calendar:3.14.3
+    image: jeffersonlab/calendar:latest
