@@ -82,7 +82,7 @@ public class MoveDaysAjax extends HttpServlet {
             occurrenceFacade.move(fromCalendarId, fromStart, numberOfDays, toCalendarId, toStart);
         }   catch (Exception e) {
             logger.log(Level.SEVERE, "Unable to move", e);
-            errorReason = e.getMessage();
+            errorReason = "Unable to move";
         }
 
         response.setContentType("text/xml");

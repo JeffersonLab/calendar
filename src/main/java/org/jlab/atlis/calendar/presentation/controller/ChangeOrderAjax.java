@@ -61,7 +61,7 @@ public class ChangeOrderAjax extends HttpServlet {
             occurrenceFacade.editABunch(occurrences);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Unable to Drag and Drop", e);
-            errorReason = e.getMessage();
+            errorReason = "Unable to re-order";
         }
 
         response.setContentType("text/xml");
