@@ -43,7 +43,7 @@
                     <c:if test="${empty selectedDay}">
                         <c:set var="selectedDay" value="${helper.todayString}"/>
                     </c:if>                    
-                    <input id="yearMonthDay" class="datepicker" name="yearMonthDay" type="text" maxlength="10" value="${selectedDay}"/>
+                    <input id="yearMonthDay" class="datepicker" name="yearMonthDay" type="text" maxlength="10" value="${fn:escapeXml(selectedDay)}"/>
                 </dd>             
                 <dt class="week-line">
                 <label>Week</label>
@@ -53,7 +53,7 @@
                     <c:if test="${empty selectedWeek}">
                         <c:set var="selectedWeek" value="${helper.currentWeek}"/>
                     </c:if>
-                    <input id="week" name="week" type="text" maxlength="2" value="${selectedWeek}"/>
+                    <input id="week" name="week" type="text" maxlength="2" value="${fn:escapeXml(selectedWeek)}"/>
                 </dd>
                 <dt class="month-line ui-helper-hidden">
                 <label>Month</label>
@@ -78,7 +78,7 @@
                         <c:set var="selectedYear" value="${helper.currentYear}"/>
                     </c:if>                    
                     
-                    <input type="text" maxlength="4" id="year" name="year" value="${selectedYear}"/>
+                    <input type="text" maxlength="4" id="year" name="year" value="${fn:escapeXml(selectedYear)}"/>
                 </dd>            
             </dl>
             <div class="dialog-button-panel">
@@ -121,7 +121,7 @@
                     <label>From Start Day (inclusive)</label>
                 </dt>
                 <dd>
-                    <input id="startDay" class="basicdatepicker" name="startDay" type="text" maxlength="10" value="${selectedDay}"/>
+                    <input id="startDay" class="basicdatepicker" name="startDay" type="text" maxlength="10" value="${fn:escapeXml(selectedDay)}"/>
                 </dd>
                 <dt>
                     <label>Number of Days</label>
@@ -143,7 +143,7 @@
                     <label>To Start Day (inclusive)</label>
                 </dt>
                 <dd>
-                    <input id="moveToDate" class="basicdatepicker" name="moveToDate" type="text" maxlength="10" value="${selectedDay}"/>
+                    <input id="moveToDate" class="basicdatepicker" name="moveToDate" type="text" maxlength="10" value="${fn:escapeXml(selectedDay)}"/>
                 </dd>
             </dl>
             <p><b>Note</b>: If you move items between "Calendars" entire events are moved (Events aren't split) so Occurrences outside of the selected range may be affected.</p>
