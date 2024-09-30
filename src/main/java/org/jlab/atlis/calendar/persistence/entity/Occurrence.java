@@ -35,270 +35,344 @@ import org.jlab.atlis.calendar.persistence.enumeration.Display;
 import org.jlab.atlis.calendar.persistence.enumeration.Shift;
 
 /**
- *
  * @author ryans
  */
 @Entity
 @Audited
-@Table(name = "OCCURRENCE", schema = "CALENDAR_OWNER", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"YEAR_MONTH_DAY", "SHIFT", "ORDER_ID"})})
+@Table(
+    name = "OCCURRENCE",
+    schema = "CALENDAR_OWNER",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"YEAR_MONTH_DAY", "SHIFT", "ORDER_ID"})})
 @NamedQueries({
-    @NamedQuery(name = "Occurrence.findAll", query = "SELECT o FROM Occurrence o"),
-    @NamedQuery(name = "Occurrence.findByOccurrenceId", query = "SELECT o FROM Occurrence o WHERE o.occurrenceId = :occurrenceId"),
-    @NamedQuery(name = "Occurrence.findByTitle", query = "SELECT o FROM Occurrence o WHERE o.title = :title"),
-    @NamedQuery(name = "Occurrence.findByYearMonthDay", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.event.calendar.calendarId = :calendarId"),
-    @NamedQuery(name = "Occurrence.findByYearMonthDayExceptHidden", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay and o.display != 'HIDE' AND o.event.calendar.calendarId = :calendarId"),
-    @NamedQuery(name = "Occurrence.findByShift", query = "SELECT o FROM Occurrence o WHERE o.shift = :shift"),
-    @NamedQuery(name = "Occurrence.findByRemark", query = "SELECT o FROM Occurrence o WHERE o.remark = :remark"),
-    @NamedQuery(name = "Occurrence.findByDisplay", query = "SELECT o FROM Occurrence o WHERE o.display = :display"),
-    @NamedQuery(name = "Occurrence.findByLiaison", query = "SELECT o FROM Occurrence o WHERE o.liaison = :liaison"),
-    @NamedQuery(name = "Occurrence.findByDescription", query = "SELECT o FROM Occurrence o WHERE o.description = :description"),
-    @NamedQuery(name = "Occurrence.findByDateRange", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay BETWEEN :start AND :end AND o.event.calendar.calendarId = :calendarId ORDER BY o.yearMonthDay ASC"),
-    @NamedQuery(name = "Occurrence.findByDateRangeExceptHidden", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay BETWEEN :start AND :end and o.display != 'HIDE' AND o.event.calendar.calendarId = :calendarId ORDER BY o.yearMonthDay ASC"),
-    @NamedQuery(name = "Occurrence.findNextOrderId", query = "SELECT MAX(o.orderId) FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.event.calendar.calendarId = :calendarId"),
-    @NamedQuery(name = "Occurrence.findShownByYearMonthDayAndShift", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.display = 'SHOW' AND o.event.calendar.calendarId = :calendarId"),
-    @NamedQuery(name = "Occurrence.findByYearMonthDayAndShiftInOrder", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.event.calendar.calendarId = :calendarId ORDER BY o.orderId ASC"),
-    @NamedQuery(name = "Occurrence.findHiddenAndMoreByYearMonthDayAndShift", query = "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.display <> 'SHOW' AND o.event.calendar.calendarId = :calendarId ORDER BY o.orderId ASC")})
+  @NamedQuery(name = "Occurrence.findAll", query = "SELECT o FROM Occurrence o"),
+  @NamedQuery(
+      name = "Occurrence.findByOccurrenceId",
+      query = "SELECT o FROM Occurrence o WHERE o.occurrenceId = :occurrenceId"),
+  @NamedQuery(
+      name = "Occurrence.findByTitle",
+      query = "SELECT o FROM Occurrence o WHERE o.title = :title"),
+  @NamedQuery(
+      name = "Occurrence.findByYearMonthDay",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.event.calendar.calendarId = :calendarId"),
+  @NamedQuery(
+      name = "Occurrence.findByYearMonthDayExceptHidden",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay and o.display != 'HIDE' AND o.event.calendar.calendarId = :calendarId"),
+  @NamedQuery(
+      name = "Occurrence.findByShift",
+      query = "SELECT o FROM Occurrence o WHERE o.shift = :shift"),
+  @NamedQuery(
+      name = "Occurrence.findByRemark",
+      query = "SELECT o FROM Occurrence o WHERE o.remark = :remark"),
+  @NamedQuery(
+      name = "Occurrence.findByDisplay",
+      query = "SELECT o FROM Occurrence o WHERE o.display = :display"),
+  @NamedQuery(
+      name = "Occurrence.findByLiaison",
+      query = "SELECT o FROM Occurrence o WHERE o.liaison = :liaison"),
+  @NamedQuery(
+      name = "Occurrence.findByDescription",
+      query = "SELECT o FROM Occurrence o WHERE o.description = :description"),
+  @NamedQuery(
+      name = "Occurrence.findByDateRange",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay BETWEEN :start AND :end AND o.event.calendar.calendarId = :calendarId ORDER BY o.yearMonthDay ASC"),
+  @NamedQuery(
+      name = "Occurrence.findByDateRangeExceptHidden",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay BETWEEN :start AND :end and o.display != 'HIDE' AND o.event.calendar.calendarId = :calendarId ORDER BY o.yearMonthDay ASC"),
+  @NamedQuery(
+      name = "Occurrence.findNextOrderId",
+      query =
+          "SELECT MAX(o.orderId) FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.event.calendar.calendarId = :calendarId"),
+  @NamedQuery(
+      name = "Occurrence.findShownByYearMonthDayAndShift",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.display = 'SHOW' AND o.event.calendar.calendarId = :calendarId"),
+  @NamedQuery(
+      name = "Occurrence.findByYearMonthDayAndShiftInOrder",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.event.calendar.calendarId = :calendarId ORDER BY o.orderId ASC"),
+  @NamedQuery(
+      name = "Occurrence.findHiddenAndMoreByYearMonthDayAndShift",
+      query =
+          "SELECT o FROM Occurrence o WHERE o.yearMonthDay = :yearMonthDay AND o.shift = :shift AND o.display <> 'SHOW' AND o.event.calendar.calendarId = :calendarId ORDER BY o.orderId ASC")
+})
 public class Occurrence implements Comparable<Occurrence>, Serializable {
 
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @SequenceGenerator(name = "OccurrenceId", sequenceName = "OCCURRENCE_ID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OccurrenceId")
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "OCCURRENCE_ID")
-    private BigInteger occurrenceId;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "TITLE")
-    private String title;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "YEAR_MONTH_DAY")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date yearMonthDay;
-    @Basic(optional = false)
-    @NotNull
-    //@Size(min = 1, max = 5)
-    @Column(name = "SHIFT")
-    @Enumerated(EnumType.STRING)
-    private Shift shift;
-    @Size(max = 512)
-    @Column(name = "REMARK")
-    private String remark;
-    @Basic(optional = false)
-    @NotNull
-    //@Size(min = 1, max = 20)
-    @Column(name = "DISPLAY")
-    @Enumerated(EnumType.STRING)
-    private Display display;
-    @Size(max = 64)
-    @Column(name = "LIAISON")
-    private String liaison;
-    @Size(max = 512)
-    @Column(name = "DESCRIPTION")
-    private String description;
-    @JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")
-    @ManyToOne(optional = false)
-    private Event event;
-    @Column(name = "ORDER_ID")
-    @Basic(optional = false)
-    @NotNull
-    @Min(1)
-    private Integer orderId;
-    @OneToMany(mappedBy = "occurrence", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<OccurrenceStyle> styles;
-    @Transient
-    private String date = null;
+  private static final long serialVersionUID = 1L;
 
-    public Occurrence() {
+  // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these
+  // annotations to enforce field validation
+  @Id
+  @SequenceGenerator(name = "OccurrenceId", sequenceName = "OCCURRENCE_ID", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OccurrenceId")
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "OCCURRENCE_ID")
+  private BigInteger occurrenceId;
+
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 128)
+  @Column(name = "TITLE")
+  private String title;
+
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "YEAR_MONTH_DAY")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date yearMonthDay;
+
+  @Basic(optional = false)
+  @NotNull
+  // @Size(min = 1, max = 5)
+  @Column(name = "SHIFT")
+  @Enumerated(EnumType.STRING)
+  private Shift shift;
+
+  @Size(max = 512)
+  @Column(name = "REMARK")
+  private String remark;
+
+  @Basic(optional = false)
+  @NotNull
+  // @Size(min = 1, max = 20)
+  @Column(name = "DISPLAY")
+  @Enumerated(EnumType.STRING)
+  private Display display;
+
+  @Size(max = 64)
+  @Column(name = "LIAISON")
+  private String liaison;
+
+  @Size(max = 512)
+  @Column(name = "DESCRIPTION")
+  private String description;
+
+  @JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")
+  @ManyToOne(optional = false)
+  private Event event;
+
+  @Column(name = "ORDER_ID")
+  @Basic(optional = false)
+  @NotNull
+  @Min(1)
+  private Integer orderId;
+
+  @OneToMany(
+      mappedBy = "occurrence",
+      fetch = FetchType.EAGER,
+      orphanRemoval = true,
+      cascade = CascadeType.ALL)
+  private List<OccurrenceStyle> styles;
+
+  @Transient private String date = null;
+
+  public Occurrence() {}
+
+  public Occurrence(BigInteger occurrenceId) {
+    this.occurrenceId = occurrenceId;
+  }
+
+  public Occurrence(
+      BigInteger occurrenceId, String title, Date yearMonthDay, Shift shift, Display display) {
+    this.occurrenceId = occurrenceId;
+    this.title = title;
+    this.yearMonthDay = yearMonthDay;
+    this.shift = shift;
+    this.display = display;
+  }
+
+  public Occurrence(Occurrence other) {
+    this.title = other.title;
+    this.description = other.description;
+    this.display = other.display;
+    this.event = other.event;
+    this.liaison = other.liaison;
+    this.remark = other.remark;
+  }
+
+  public static List<OccurrenceStyle> copyStylesToList(Occurrence recipient, Occurrence other) {
+    List<OccurrenceStyle> copies = new ArrayList<OccurrenceStyle>();
+
+    if (other.getStyles() != null && !other.getStyles().isEmpty()) {
+      for (OccurrenceStyle os : other.getStyles()) {
+        OccurrenceStyle copy = new OccurrenceStyle();
+        copy.setOccurrence(recipient);
+        copy.setOccurrenceStyleChoice(os.getOccurrenceStyleChoice());
+        copies.add(copy);
+      }
     }
 
-    public Occurrence(BigInteger occurrenceId) {
-        this.occurrenceId = occurrenceId;
+    return copies;
+  }
+
+  public void copyStyles(Occurrence other) {
+    if (other.getStyles() != null && !other.getStyles().isEmpty()) {
+      List<OccurrenceStyle> copies = copyStylesToList(this, other);
+
+      this.setStyles(copies);
+    }
+  }
+
+  public BigInteger getOccurrenceId() {
+    return occurrenceId;
+  }
+
+  public void setOccurrenceId(BigInteger occurrenceId) {
+    this.occurrenceId = occurrenceId;
+  }
+
+  public String getDate() {
+    if (date == null) {
+      SimpleDateFormat format = new SimpleDateFormat("EE yyyy-MM-dd");
+      date = format.format(getYearMonthDay()) + " " + getShift();
     }
 
-    public Occurrence(BigInteger occurrenceId, String title, Date yearMonthDay, Shift shift, Display display) {
-        this.occurrenceId = occurrenceId;
-        this.title = title;
-        this.yearMonthDay = yearMonthDay;
-        this.shift = shift;
-        this.display = display;
-    }
+    return date;
+  }
 
-    public Occurrence(Occurrence other) {
-        this.title = other.title;
-        this.description = other.description;
-        this.display = other.display;
-        this.event = other.event;
-        this.liaison = other.liaison;
-        this.remark = other.remark;
-    }
+  public void setDate(String date) {
+    this.date = date;
+  }
 
-    public static List<OccurrenceStyle> copyStylesToList(Occurrence recipient, Occurrence other) {
-        List<OccurrenceStyle> copies = new ArrayList<OccurrenceStyle>();
-        
-        if (other.getStyles() != null && !other.getStyles().isEmpty()) {
-            for (OccurrenceStyle os : other.getStyles()) {
-                OccurrenceStyle copy = new OccurrenceStyle();
-                copy.setOccurrence(recipient);
-                copy.setOccurrenceStyleChoice(os.getOccurrenceStyleChoice());
-                copies.add(copy);
-            }
-        }
-        
-        return copies;
-    }
-    
-    public void copyStyles(Occurrence other) {
-        if (other.getStyles() != null && !other.getStyles().isEmpty()) {
-            List<OccurrenceStyle> copies = copyStylesToList(this, other);
+  public String getTitle() {
+    return title;
+  }
 
-            this.setStyles(copies);
-        }
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public BigInteger getOccurrenceId() {
-        return occurrenceId;
-    }
+  public Date getYearMonthDay() {
+    return yearMonthDay;
+  }
 
-    public void setOccurrenceId(BigInteger occurrenceId) {
-        this.occurrenceId = occurrenceId;
-    }
+  public void setYearMonthDay(Date yearMonthDay) {
+    this.yearMonthDay = yearMonthDay;
+  }
 
-    public String getDate() {
-        if (date == null) {
-            SimpleDateFormat format = new SimpleDateFormat("EE yyyy-MM-dd");
-            date = format.format(getYearMonthDay()) + " " + getShift();
-        }
+  public Shift getShift() {
+    return shift;
+  }
 
-        return date;
-    }
+  public void setShift(Shift shift) {
+    this.shift = shift;
+  }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+  public String getRemark() {
+    return remark;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public Display getDisplay() {
+    return display;
+  }
 
-    public Date getYearMonthDay() {
-        return yearMonthDay;
-    }
+  public void setDisplay(Display display) {
+    this.display = display;
+  }
 
-    public void setYearMonthDay(Date yearMonthDay) {
-        this.yearMonthDay = yearMonthDay;
-    }
+  public String getLiaison() {
+    return liaison;
+  }
 
-    public Shift getShift() {
-        return shift;
-    }
+  public void setLiaison(String liaison) {
+    this.liaison = liaison;
+  }
 
-    public void setShift(Shift shift) {
-        this.shift = shift;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getRemark() {
-        return remark;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+  public Event getEvent() {
+    return event;
+  }
 
-    public Display getDisplay() {
-        return display;
-    }
+  public void setEvent(Event event) {
+    this.event = event;
+  }
 
-    public void setDisplay(Display display) {
-        this.display = display;
-    }
+  public Integer getOrderId() {
+    return orderId;
+  }
 
-    public String getLiaison() {
-        return liaison;
-    }
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
+  }
 
-    public void setLiaison(String liaison) {
-        this.liaison = liaison;
-    }
+  public List<OccurrenceStyle> getStyles() {
+    return styles;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setStyles(List<OccurrenceStyle> styles) {
+    this.styles = styles;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  @Override
+  public int hashCode() {
+    int hash = 0;
+    hash += (occurrenceId != null ? occurrenceId.hashCode() : 0);
+    return hash;
+  }
 
-    public Event getEvent() {
-        return event;
+  @Override
+  public boolean equals(Object object) {
+    // TODO: Warning - this method won't work in the case the id fields are not set
+    if (!(object instanceof Occurrence)) {
+      return false;
     }
+    Occurrence other = (Occurrence) object;
+    return (this.occurrenceId != null || other.occurrenceId == null)
+        && (this.occurrenceId == null || this.occurrenceId.equals(other.occurrenceId));
+  }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
+  @Override
+  public String toString() {
+    return "Occurrence{"
+        + "occurrenceId="
+        + occurrenceId
+        + ", title='"
+        + title
+        + '\''
+        + ", yearMonthDay="
+        + yearMonthDay
+        + ", shift="
+        + shift
+        + ", remark='"
+        + remark
+        + '\''
+        + ", display="
+        + display
+        + ", liaison='"
+        + liaison
+        + '\''
+        + ", description='"
+        + description
+        + '\''
+        + ", event="
+        + event
+        + ", orderId="
+        + orderId
+        +
+        // ", styles=" + styles +
+        ", date='"
+        + date
+        + '\''
+        + '}';
+  }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public List<OccurrenceStyle> getStyles() {
-        return styles;
-    }
-
-    public void setStyles(List<OccurrenceStyle> styles) {
-        this.styles = styles;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (occurrenceId != null ? occurrenceId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Occurrence)) {
-            return false;
-        }
-        Occurrence other = (Occurrence) object;
-        return (this.occurrenceId != null || other.occurrenceId == null) && (this.occurrenceId == null || this.occurrenceId.equals(other.occurrenceId));
-    }
-
-    @Override
-    public String toString() {
-        return "Occurrence{" +
-                "occurrenceId=" + occurrenceId +
-                ", title='" + title + '\'' +
-                ", yearMonthDay=" + yearMonthDay +
-                ", shift=" + shift +
-                ", remark='" + remark + '\'' +
-                ", display=" + display +
-                ", liaison='" + liaison + '\'' +
-                ", description='" + description + '\'' +
-                ", event=" + event +
-                ", orderId=" + orderId +
-                //", styles=" + styles +
-                ", date='" + date + '\'' +
-                '}';
-    }
-
-    @Override
-    public int compareTo(Occurrence o) {
-        return this.orderId.compareTo(o.orderId);
-    }
+  @Override
+  public int compareTo(Occurrence o) {
+    return this.orderId.compareTo(o.orderId);
+  }
 }
