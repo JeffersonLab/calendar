@@ -1,22 +1,22 @@
 services:
   oracle:
     extends:
-      file: docker-compose.yml
+      file: compose.yaml
       service: oracle
 
   keycloak:
     extends:
-      file: docker-compose.yml
+      file: compose.yaml
       service: keycloak
 
   puppet:
     extends:
-      file: docker-compose.yml
+      file: compose.yaml
       service: puppet
 
   calendar:
     extends:
-      file: docker-compose.yml
+      file: compose.yaml
       service: calendar
     build:
       context: .
