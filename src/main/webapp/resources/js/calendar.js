@@ -1,3 +1,22 @@
+if (!String.prototype.encodeXml) {
+    String.prototype.encodeXml = function () {
+        return this.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/'/g, '&apos;')
+            .replace(/"/g, '&quot;');
+    };
+}
+if (!String.prototype.decodeXml) {
+    String.prototype.decodeXml = function () {
+        return this.replace(/&quot;/g, '"')
+            .replace(/&apos;/g, '\'')
+            .replace(/&gt;/g, '>')
+            .replace(/&lt;/g, '<')
+            .replace(/&amp;/g, '&');
+    };
+}
+
 var jlab = jlab || {};
 
 jlab.su = function(url) {
@@ -138,7 +157,7 @@ $(function() {
 
     $("#viewselect").change(function() {
         var action = $(this).val();
-        $("#viewform").attr("action",  action);
+        $("#viewform").attr("action",  String(action).encodeXml());
 
         if(action === 'view-outlook' || action === 'view-week') {
             $(".day-line").addClass("ui-helper-hidden");
