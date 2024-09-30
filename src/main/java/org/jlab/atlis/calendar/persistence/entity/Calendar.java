@@ -12,100 +12,102 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
  * @author ryans
  */
 @Entity
 @Table(name = "CALENDAR", schema = "CALENDAR_OWNER")
-@NamedQueries({
-    @NamedQuery(name = "Calendar.findAll", query = "SELECT c FROM Calendar c")})
+@NamedQueries({@NamedQuery(name = "Calendar.findAll", query = "SELECT c FROM Calendar c")})
 public class Calendar implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "CALENDAR_ID", nullable = false, precision = 38, scale = 0)
-    private Integer calendarId;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "NAME", nullable = false, length = 64)
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ORDER_ID", nullable = false)
-    private Integer orderId;
-    @Size(max = 256)
-    @Column(name = "DESCRIPTION", length = 256)
-    private String description;
+  private static final long serialVersionUID = 1L;
 
-    public Calendar() {
-    }
+  // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these
+  // annotations to enforce field validation
+  @Id
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "CALENDAR_ID", nullable = false, precision = 38, scale = 0)
+  private Integer calendarId;
 
-    public Calendar(Integer calendarId) {
-        this.calendarId = calendarId;
-    }
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 64)
+  @Column(name = "NAME", nullable = false, length = 64)
+  private String name;
 
-    public Calendar(Integer calendarId, String name, Integer orderId) {
-        this.calendarId = calendarId;
-        this.name = name;
-        this.orderId = orderId;
-    }
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "ORDER_ID", nullable = false)
+  private Integer orderId;
 
-    public Integer getCalendarId() {
-        return calendarId;
-    }
+  @Size(max = 256)
+  @Column(name = "DESCRIPTION", length = 256)
+  private String description;
 
-    public void setCalendarId(Integer calendarId) {
-        this.calendarId = calendarId;
-    }
+  public Calendar() {}
 
-    public String getName() {
-        return name;
-    }
+  public Calendar(Integer calendarId) {
+    this.calendarId = calendarId;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Calendar(Integer calendarId, String name, Integer orderId) {
+    this.calendarId = calendarId;
+    this.name = name;
+    this.orderId = orderId;
+  }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
+  public Integer getCalendarId() {
+    return calendarId;
+  }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+  public void setCalendarId(Integer calendarId) {
+    this.calendarId = calendarId;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (calendarId != null ? calendarId.hashCode() : 0);
-        return hash;
-    }
+  public Integer getOrderId() {
+    return orderId;
+  }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Calendar)) {
-            return false;
-        }
-        Calendar other = (Calendar) object;
-        return (this.calendarId != null || other.calendarId == null) && (this.calendarId == null || this.calendarId.equals(other.calendarId));
-    }
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
+  }
 
-    @Override
-    public String toString() {
-        return "org.jlab.atlis.calendar.persistence.entity.Calendar[ calendarId=" + calendarId + " ]";
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 0;
+    hash += (calendarId != null ? calendarId.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    // TODO: Warning - this method won't work in the case the id fields are not set
+    if (!(object instanceof Calendar)) {
+      return false;
     }
-    
+    Calendar other = (Calendar) object;
+    return (this.calendarId != null || other.calendarId == null)
+        && (this.calendarId == null || this.calendarId.equals(other.calendarId));
+  }
+
+  @Override
+  public String toString() {
+    return "org.jlab.atlis.calendar.persistence.entity.Calendar[ calendarId=" + calendarId + " ]";
+  }
 }

@@ -1,46 +1,47 @@
 package org.jlab.atlis.calendar.presentation.filter;
 
 /**
- *
  * @author ryans
  */
 public class AuditContext {
 
-    private String username;
-    private String ip;
+  private String username;
+  private String ip;
 
-    public String getIp() {
-        return ip;
-    }
+  public String getIp() {
+    return ip;
+  }
 
-    protected void setIp(String ip) {
-        this.ip = ip;
-    }
+  protected void setIp(String ip) {
+    this.ip = ip;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    protected void setUsername(String username) {
-        this.username = username;
-    }
-    private static final ThreadLocal<AuditContext> instance = new ThreadLocal<AuditContext>() {
+  protected void setUsername(String username) {
+    this.username = username;
+  }
+
+  private static final ThreadLocal<AuditContext> instance =
+      new ThreadLocal<AuditContext>() {
 
         @Override
         protected AuditContext initialValue() {
-            return null;
+          return null;
         }
-    };
+      };
 
-    public static AuditContext getCurrentInstance() {
-        return instance.get();
-    }
+  public static AuditContext getCurrentInstance() {
+    return instance.get();
+  }
 
-    protected static void setCurrentInstance(AuditContext context) {
-        if (context == null) {
-            instance.remove();
-        } else {
-            instance.set(context);
-        }
+  protected static void setCurrentInstance(AuditContext context) {
+    if (context == null) {
+      instance.remove();
+    } else {
+      instance.set(context);
     }
+  }
 }

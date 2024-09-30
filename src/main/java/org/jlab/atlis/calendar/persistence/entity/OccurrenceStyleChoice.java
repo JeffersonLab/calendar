@@ -15,90 +15,108 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "OCCURRENCE_STYLE_CHOICE", schema = "CALENDAR_OWNER", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"NAME"}),
-    @UniqueConstraint(columnNames = {"CSS_CLASS_NAME"}),
-    @UniqueConstraint(columnNames = {"ORDER_ID"})})
+@Table(
+    name = "OCCURRENCE_STYLE_CHOICE",
+    schema = "CALENDAR_OWNER",
+    uniqueConstraints = {
+      @UniqueConstraint(columnNames = {"NAME"}),
+      @UniqueConstraint(columnNames = {"CSS_CLASS_NAME"}),
+      @UniqueConstraint(columnNames = {"ORDER_ID"})
+    })
 @NamedQueries({
-    @NamedQuery(name = "OccurrenceStyleChoice.findAllInOrder", query = "SELECT o FROM OccurrenceStyleChoice o order by o.orderId asc")})
+  @NamedQuery(
+      name = "OccurrenceStyleChoice.findAllInOrder",
+      query = "SELECT o FROM OccurrenceStyleChoice o order by o.orderId asc")
+})
 public class OccurrenceStyleChoice implements Serializable, Comparable<OccurrenceStyleChoice> {
-    @Id   
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "OCCURRENCE_STYLE_CHOICE_ID")
-    private BigInteger occurrenceStyleChoiceId;  
-    @Basic(optional = false)
-    @NotNull
-    @Size(max=20) 
-    @Column(name = "NAME")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(max=20)
-    @Column(name = "CSS_CLASS_NAME")
-    private String cssClassName;
-    @NotNull
-    @Basic(optional = false)
-    @Column(name = "ORDER_ID")
-    private Integer orderId;
-    public BigInteger getOccurrenceStyleChoiceId() {
-        return occurrenceStyleChoiceId;
-    }
+  @Id
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "OCCURRENCE_STYLE_CHOICE_ID")
+  private BigInteger occurrenceStyleChoiceId;
 
-    public void setOccurrenceStyleChoiceId(BigInteger occurrenceStyleChoiceId) {
-        this.occurrenceStyleChoiceId = occurrenceStyleChoiceId;
-    }
+  @Basic(optional = false)
+  @NotNull
+  @Size(max = 20)
+  @Column(name = "NAME")
+  private String name;
 
-    public String getName() {
-        return name;
-    }
+  @Basic(optional = false)
+  @NotNull
+  @Size(max = 20)
+  @Column(name = "CSS_CLASS_NAME")
+  private String cssClassName;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @NotNull
+  @Basic(optional = false)
+  @Column(name = "ORDER_ID")
+  private Integer orderId;
 
-    public String getCssClassName() {
-        return cssClassName;
-    }
+  public BigInteger getOccurrenceStyleChoiceId() {
+    return occurrenceStyleChoiceId;
+  }
 
-    public void setCssClassName(String cssClassName) {
-        this.cssClassName = cssClassName;
-    }
+  public void setOccurrenceStyleChoiceId(BigInteger occurrenceStyleChoiceId) {
+    this.occurrenceStyleChoiceId = occurrenceStyleChoiceId;
+  }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final OccurrenceStyleChoice other = (OccurrenceStyleChoice) obj;
-        return Objects.equals(this.occurrenceStyleChoiceId, other.occurrenceStyleChoiceId);
-    }
+  public String getCssClassName() {
+    return cssClassName;
+  }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + (this.occurrenceStyleChoiceId != null ? this.occurrenceStyleChoiceId.hashCode() : 0);
-        return hash;
-    }
+  public void setCssClassName(String cssClassName) {
+    this.cssClassName = cssClassName;
+  }
 
-    @Override
-    public String toString() {
-        return "OccurrenceStyleChoice{" + "occurrenceStyleChoiceId=" + occurrenceStyleChoiceId + ", name=" + name + '}';
-    }
+  public Integer getOrderId() {
+    return orderId;
+  }
 
-    @Override
-    public int compareTo(OccurrenceStyleChoice o) {
-        return this.orderId.compareTo(o.orderId);
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
     }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final OccurrenceStyleChoice other = (OccurrenceStyleChoice) obj;
+    return Objects.equals(this.occurrenceStyleChoiceId, other.occurrenceStyleChoiceId);
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash =
+        53 * hash
+            + (this.occurrenceStyleChoiceId != null ? this.occurrenceStyleChoiceId.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public String toString() {
+    return "OccurrenceStyleChoice{"
+        + "occurrenceStyleChoiceId="
+        + occurrenceStyleChoiceId
+        + ", name="
+        + name
+        + '}';
+  }
+
+  @Override
+  public int compareTo(OccurrenceStyleChoice o) {
+    return this.orderId.compareTo(o.orderId);
+  }
 }

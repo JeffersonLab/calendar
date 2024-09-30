@@ -22,113 +22,120 @@ import org.jlab.atlis.calendar.presentation.exception.ValidationException;
 import org.jlab.atlis.calendar.presentation.validator.YearMonthDayValidator;
 
 /**
- *
  * @author ryans
  */
-@WebServlet(name = "ViewAudit", urlPatterns = {"/view-audit"})
+@WebServlet(
+    name = "ViewAudit",
+    urlPatterns = {"/view-audit"})
 public class ViewAudit extends HttpServlet {
 
-    @EJB
-    private AuditManager auditManager;
-    
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        Map<String, String> messages = new HashMap<String, String>();
-        request.setAttribute("messages", messages);
+  @EJB private AuditManager auditManager;
 
-        AuditSearchFilter filter = convertAndValidateFilter(request);
-        Paginator paginator = convertAndValidatePaginator(request);
+  /**
+   * Handles the HTTP <code>GET</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-        if (!messages.isEmpty()) {
-            messages.put("error", "Unable to view audit");
-            getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/views/view-audit.jsp").forward(request, response);
-            return;
-        }
+    Map<String, String> messages = new HashMap<String, String>();
+    request.setAttribute("messages", messages);
 
-        int count = auditManager.count(filter);
+    AuditSearchFilter filter = convertAndValidateFilter(request);
+    Paginator paginator = convertAndValidatePaginator(request);
 
-        paginator.setCount(count);        
-        
-        List<CalendarRevisionInfo> revs = auditManager.findWithDynamicCriteria(filter, paginator);
-        
-        request.setAttribute("revs", revs);
-        
-        getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/views/view-audit.jsp").forward(request, response);        
-    }
-    
-    private AuditSearchFilter convertAndValidateFilter(HttpServletRequest request) {
-        @SuppressWarnings("unchecked")
-        Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
-
-        AuditSearchFilter filter = new AuditSearchFilter();
-
-        String start = request.getParameter("start");
-        String end = request.getParameter("end");
-
-        YearMonthDayConverter ymdConverter = new YearMonthDayConverter();
-        YearMonthDayValidator ymdValidator = new YearMonthDayValidator();
-
-        Date startDate = null;
-        Date endDate = null;
-
-        try {
-            startDate = ymdConverter.getObject(start);
-        } catch (ConverterException e) {
-            messages.put("start", e.getMessage());
-        }
-
-        try {
-            endDate = ymdConverter.getObject(end);
-        } catch (ConverterException e) {
-            messages.put("end", e.getMessage());
-        }
-
-        if (messages.get("start") == null && messages.get("end") == null) {
-            try {
-                ymdValidator.validate(startDate, endDate);
-            } catch (ValidationException e) {
-                messages.put("start", e.getMessage());
-                messages.put("end", e.getMessage());
-            }
-        }
-
-        filter.setStart(startDate);
-        filter.setEnd(endDate);
-
-        return filter;
+    if (!messages.isEmpty()) {
+      messages.put("error", "Unable to view audit");
+      getServletConfig()
+          .getServletContext()
+          .getRequestDispatcher("/WEB-INF/views/view-audit.jsp")
+          .forward(request, response);
+      return;
     }
 
-    private Paginator convertAndValidatePaginator(HttpServletRequest request) {
-        @SuppressWarnings("unchecked")
-        Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
+    int count = auditManager.count(filter);
 
-        Paginator paginator = new Paginator();
+    paginator.setCount(count);
 
-        String startIndexStr = request.getParameter("startIndex");
-        
-        IntegerConverter numberConverter = new IntegerConverter();
+    List<CalendarRevisionInfo> revs = auditManager.findWithDynamicCriteria(filter, paginator);
 
-        Integer startIndex = 0;
+    request.setAttribute("revs", revs);
 
-        try {
-            startIndex = numberConverter.getObject(startIndexStr);
-        } catch (ConverterException e) {
-            messages.put("startIndex", e.getMessage());
-        }
+    getServletConfig()
+        .getServletContext()
+        .getRequestDispatcher("/WEB-INF/views/view-audit.jsp")
+        .forward(request, response);
+  }
 
-        if (startIndex != null) {
-            paginator.setStartIndex(startIndex);
-        }
+  private AuditSearchFilter convertAndValidateFilter(HttpServletRequest request) {
+    @SuppressWarnings("unchecked")
+    Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
 
-        return paginator;
-    }       
+    AuditSearchFilter filter = new AuditSearchFilter();
+
+    String start = request.getParameter("start");
+    String end = request.getParameter("end");
+
+    YearMonthDayConverter ymdConverter = new YearMonthDayConverter();
+    YearMonthDayValidator ymdValidator = new YearMonthDayValidator();
+
+    Date startDate = null;
+    Date endDate = null;
+
+    try {
+      startDate = ymdConverter.getObject(start);
+    } catch (ConverterException e) {
+      messages.put("start", e.getMessage());
+    }
+
+    try {
+      endDate = ymdConverter.getObject(end);
+    } catch (ConverterException e) {
+      messages.put("end", e.getMessage());
+    }
+
+    if (messages.get("start") == null && messages.get("end") == null) {
+      try {
+        ymdValidator.validate(startDate, endDate);
+      } catch (ValidationException e) {
+        messages.put("start", e.getMessage());
+        messages.put("end", e.getMessage());
+      }
+    }
+
+    filter.setStart(startDate);
+    filter.setEnd(endDate);
+
+    return filter;
+  }
+
+  private Paginator convertAndValidatePaginator(HttpServletRequest request) {
+    @SuppressWarnings("unchecked")
+    Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
+
+    Paginator paginator = new Paginator();
+
+    String startIndexStr = request.getParameter("startIndex");
+
+    IntegerConverter numberConverter = new IntegerConverter();
+
+    Integer startIndex = 0;
+
+    try {
+      startIndex = numberConverter.getObject(startIndexStr);
+    } catch (ConverterException e) {
+      messages.put("startIndex", e.getMessage());
+    }
+
+    if (startIndex != null) {
+      paginator.setStartIndex(startIndex);
+    }
+
+    return paginator;
+  }
 }

@@ -10,21 +10,19 @@ import javax.persistence.PersistenceContext;
 import org.jlab.atlis.calendar.persistence.entity.OccurrenceStyle;
 
 /**
- *
  * @author ryans
  */
 @Stateless
 public class OccurrenceStyleFacade extends AbstractFacade<OccurrenceStyle> {
-    @PersistenceContext(unitName = "calendarPU")
-    private EntityManager em;
+  @PersistenceContext(unitName = "calendarPU")
+  private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
 
-    public OccurrenceStyleFacade() {
-        super(OccurrenceStyle.class);
-    }
-    
+  public OccurrenceStyleFacade() {
+    super(OccurrenceStyle.class);
+  }
 }
