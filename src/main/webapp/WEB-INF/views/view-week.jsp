@@ -41,9 +41,9 @@
             <div id="editable-control-panel-hook">
                 <div id="editable-control-panel">
                     <form id="editable-form" method="get" action="view-week">
-                        <input type="hidden" name="calendar" value="${param.calendar}"/>
-                        <input type="hidden" name="year" value="${param.year}"/>
-                        <input type="hidden" name="week" value="${param.week}"/>
+                        <input type="hidden" name="calendar" value="${fn:escapeXml(param.calendar)}"/>
+                        <input type="hidden" name="year" value="${fn:escapeXml(param.year)}"/>
+                        <input type="hidden" name="week" value="${fn:escapeXml(param.week)}"/>
                         <label for="editable-checkbox">Edit:</label>
                         <input id="editable-checkbox" type="checkbox" name="editable"
                                value="true" ${param.editable ne null ? 'checked="checked"' : ''}
