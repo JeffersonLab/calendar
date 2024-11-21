@@ -88,7 +88,7 @@
         </form>        
     </div>
     <div id="helpDialog" class="dialog" title="Help">
-        <h3>SAD Calendar</h3>
+        <h3>SAM Calendar</h3>
         <dl class="min-fields">
             <dt>Version</dt>
             <dd>${initParam.releaseNumber}</dd>

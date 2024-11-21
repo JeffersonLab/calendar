@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-    <display-name>SAD Calendar</display-name>
+    <display-name>SAM Calendar</display-name>
     <context-param>
         <param-name>releaseNumber</param-name>
         <param-value>@VERSION@</param-value>
@@ -15,7 +15,7 @@
     <context-param>
         <description>App short name</description>
         <param-name>appShortName</param-name>
-        <param-value>SAD Calendar</param-value>
+        <param-value>SAM Calendar</param-value>
     </context-param>
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>

@@ -22,7 +22,7 @@ public class ExcelExporter {
       OutputStream out, List<Occurrence> occurrences, boolean includeOperabilityComment)
       throws IOException {
     Workbook wb = new XSSFWorkbook();
-    Sheet sheet1 = wb.createSheet("SAD Calendar");
+    Sheet sheet1 = wb.createSheet("SAM Calendar");
 
     Row row1 = sheet1.createRow((short) 0);
     row1.createCell(0).setCellValue("OCCURRENCE_ID");
