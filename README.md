@@ -59,7 +59,7 @@ Uses a subset of the [Smoothness Environment Variables](https://github.com/Jeffe
  - PUPPET_SHOW_SERVER_URL
 
 ### Database
-The application requires an Oracle 18+ database with the following [schema](https://github.com/JeffersonLab/calendar/tree/main/docker/oracle/setup) installed.   The application server hosting the app must also be configured with a JNDI datasource.
+The application requires an Oracle 19+ database with the following [schema](https://github.com/JeffersonLab/calendar/tree/main/docker/oracle/setup) installed.   The application server hosting the app must also be configured with a JNDI datasource.
 
 ## Build
 This project is built with [Java 17](https://adoptium.net/) (compiled to Java 17 bytecode), and uses the [Gradle 7](https://gradle.org/) build tool to automatically download dependencies and build the project from source:
