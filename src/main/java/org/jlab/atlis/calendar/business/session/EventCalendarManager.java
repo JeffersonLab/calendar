@@ -1,5 +1,7 @@
 package org.jlab.atlis.calendar.business.session;
 
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,8 +11,6 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import org.jlab.atlis.calendar.business.utility.DateIterator;
 import org.jlab.atlis.calendar.business.utility.DateRange;
 import org.jlab.atlis.calendar.business.utility.TimeHelper;

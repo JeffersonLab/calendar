@@ -1,6 +1,6 @@
 package org.jlab.atlis.calendar.presentation.exception;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 /**
  * @author ryans

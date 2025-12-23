@@ -1,9 +1,9 @@
 package org.jlab.atlis.calendar.persistence.entity;
 
+import jakarta.persistence.metamodel.SingularAttribute;
+import jakarta.persistence.metamodel.StaticMetamodel;
 import java.math.BigInteger;
 import java.util.Date;
-import javax.persistence.metamodel.SingularAttribute;
-import javax.persistence.metamodel.StaticMetamodel;
 
 /**
  * @author ryans
