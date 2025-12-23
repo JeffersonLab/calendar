@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 <div class="left-header">
     <%@include file="logo.jspf"%>
     <div id="credentials">
@@ -16,7 +16,7 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <c:url var="domainRelativeReturnUrl" scope="request" context="/" value="${requestScope['javax.servlet.forward.request_uri']}${requestScope['javax.servlet.forward.query_string'] ne null ? '?'.concat(requestScope['javax.servlet.forward.query_string']) : ''}"/>
+                <c:url var="domainRelativeReturnUrl" scope="request" context="/" value="${requestScope['jakarta.servlet.forward.request_uri']}${requestScope['jakarta.servlet.forward.query_string'] ne null ? '?'.concat(requestScope['jakarta.servlet.forward.query_string']) : ''}"/>
                 <c:url value="/sso" var="loginUrl">
                     <c:param name="returnUrl" value="${helper.getAbsoluteHostURL(pageContext.request).concat(domainRelativeReturnUrl)}"/>
                 </c:url>
