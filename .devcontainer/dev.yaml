@@ -1,0 +1,24 @@
+name: calendar-devcontainers
+services:
+  oracle:
+    extends:
+      file: ../compose.yaml
+      service: oracle
+    container_name: calendar-oracle-devc
+
+  keycloak:
+    extends:
+      file: ../compose.yaml
+      service: keycloak
+    container_name: calendar-keycloak-devc
+
+  puppet:
+    extends:
+      file: ../compose.yaml
+      service: puppet
+    container_name: calendar-puppet-devc
+
+  dev:
+    image: jeffersonlab/calendar:latest
+    hostname: dev
+    container_name: calendar-dev-devc

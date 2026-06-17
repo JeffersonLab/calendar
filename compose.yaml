@@ -3,20 +3,23 @@ services:
     extends:
       file: deps.yaml
       service: oracle
+    container_name: calendar-oracle
 
   keycloak:
     extends:
       file: deps.yaml
       service: keycloak
+    container_name: calendar-keycloak
 
   puppet:
     extends:
       file: deps.yaml
       service: puppet
+    container_name: calendar-puppet
 
   calendar:
     hostname: calendar
-    container_name: calendar
+    container_name: calendar-dev
     ports:
       - "8443:8443"
       - "8080:8080"
